@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 配置struts包，包名随意定义 -->
+<package name="test" extends="json-default">
+	<!-- 全部视图 -->
+	<global-results>
+		 <result name="json" type="json">
+		 	<param name="contentType">text/html</param>
+		 </result>
+	</global-results>
+	<!-- 配置action  其中name名就是我们访问的名：例如：http://localhost:8080/项目名称/demo.action -->
+	<action name="login" class="com.hanyun.struts.action.LoginAction">
+		<result name="success">index.jsp</result>
+		<result name="error">login.jsp</result>
+	
+	</action>
+	<action name="reg" class="com.hanyun.struts.action.RegisterAction"></action>
+	<action name="logout" class="com.hanyun.struts.action.LogoutAction"></action>
+</package>
+
+
+</struts>

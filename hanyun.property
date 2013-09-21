@@ -1,0 +1,12 @@
+#------DB PROPERTIES----------------
+driver = com.mysql.jdbc.Driver
+url = jdbc:mysql://127.0.0.1:3306/hanyun?useUnicode=true&characterEncoding=UTF-8
+username = root
+password = hanyunroot
+minConnections = 2
+maxConnections = 10
+timeout = 100
+leaseTime = 60000
+logFile = DDConnectionBroker.log
+
+#--------OTHER-------------------

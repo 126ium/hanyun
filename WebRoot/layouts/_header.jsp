@@ -8,13 +8,18 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Han Yun</a>
+			<a class="navbar-brand" href="index.jsp">Han Yun</a>
 		</div>
 		<div class="navbar-collapse collapse">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Sign in</a></li>
-				<li class="active"><a href="#">Sign up</a></li>
+				<li><a href="index.jsp">Home</a></li>
+				<li class="active"><a href="login.jsp">Sign in/up</a></li>
 			</ul>
 		</div>
 	</div>

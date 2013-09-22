@@ -16,8 +16,8 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 	@Override
 	public void add(User... models) throws SQLException {
 		for (User u : models) {
-			factory.execute("INSERT INTO t_user ( userName, userPassword, salt, userRole, userEmail, lastLoginIP, lastLoginTime, userStatus, avatarUrl)" +
-					" VALUES(?,?,?,?,?,?,?,?,?)", 
+			factory.execute("INSERT INTO t_User ( userName, userPassword, salt, userRole, userEmail, lastLoginIP, lastLoginTime, userStatus, avatarUrl, registerIP, registerTime)" +
+					" VALUES(?,?,?,?,?,?,?,?,?,?,?)", 
 					u.getUserName(),
 					u.getPassword(),
 					u.getSalt(),
@@ -26,21 +26,23 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 					u.getLastLoginIP(),
 					u.getLastLoginTime(),
 					u.getUserStatus(),
-					u.getAvatarUrl());
+					u.getAvatarUrl(),
+					u.getRegisterIP(),
+					u.getRegisterTime());
 		}		
 	}
 
 	@Override
 	public void delete(User... models) throws SQLException {
 		for (User u : models) {
-			factory.execute("DELETE FROM t_user WHERE userId = ?", u.getUserId());
+			factory.execute("DELETE FROM t_User WHERE userId = ?", u.getUserId());
 		}
 		
 	}
 
 	@Override
 	public List<User> getAll() throws SQLException {
-		return factory.getAll("SELECT * FROM t_user", new User());
+		return factory.getAll("SELECT * FROM t_User", new User());
 	}
 
 	@Override
@@ -56,11 +58,11 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 	}
 	
 	public User login(String userName, String password) throws SQLException {
-		return factory.get("SELECT * FROM t_user WHERE userName = ? and userPassword = ?", new User(), userName, password);
+		return factory.get("SELECT * FROM t_User WHERE userName = ? and userPassword = ?", new User(), userName, password);
 	}
 	
 	public String getSalt(String userName) throws SQLException{
-		User user = factory.get("SELECT * FROM t_user WHERE userName = ?", new User(), userName);
+		User user = factory.get("SELECT * FROM t_User WHERE userName = ?", new User(), userName);
 		return user.getSalt();
 	}
 	
@@ -70,7 +72,7 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 		try {
 			conn = u.db.getConnection();
 			boolean ret = u.db.execute(
-					"INSERT INTO t_user VALUES(?,?,?,?,?,?,?,?,?,?)", 
+					"INSERT INTO t_User VALUES(?,?,?,?,?,?,?,?,?,?)", 
 					"name", "pwd", "salt", 1, "haode@baidu.com", "xxx",
 					new Date(), 1, "3.jpg");
 			System.out.println(ret);

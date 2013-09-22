@@ -12,7 +12,7 @@ public class ThumbnailDAOImpl extends AbstractHanyunDAO<Thumbnail> {
 	public void add(Thumbnail... models) throws SQLException {
 		for (Thumbnail t : models) {
 			factory.execute(
-					"INSERT INTO t_image (imageId, imageUrl, imageName)" +
+					"INSERT INTO t_Image (imageId, imageUrl, imageName)" +
 					" VALUES(?,?,?)",
 					t.getImageId(), t.getImageUrl(), t.getImageName());
 		}
@@ -22,14 +22,14 @@ public class ThumbnailDAOImpl extends AbstractHanyunDAO<Thumbnail> {
 	public void delete(Thumbnail... models) throws SQLException {
 		for (Thumbnail t : models) {
 			factory.execute(
-					"DELETE FROM t_image where imageId = ?",
+					"DELETE FROM t_Image where imageId = ?",
 					t.getImageId());
 		}
 	}
 
 	@Override
 	public List<Thumbnail> getAll() throws SQLException {
-		return factory.getAll("SELECT * FROM t_image", new Thumbnail());
+		return factory.getAll("SELECT * FROM t_Image", new Thumbnail());
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-
 public class Resource implements IRowMaper<Resource> {
 	// 资源文件ID
 	private int fileId;
@@ -20,11 +19,12 @@ public class Resource implements IRowMaper<Resource> {
 	private Date uploadTime;
 	private int downloadTimes;
 	private int browseTimes;
-	private int reviewStatus;
-	
+	private int reviewStatusId;
+	private int fileSize;	
+
 	public Resource(int fileId, int userId, int resourceId, int imageId,
 			String fileName, String fileMD5, String fileUrl, Date uploadTime,
-			int downloadTimes, int browseTimes, int reviewStatus) {
+			int downloadTimes, int browseTimes, int reviewStatusId, int fileSize) {
 		super();
 		this.fileId = fileId;
 		this.userId = userId;
@@ -36,9 +36,10 @@ public class Resource implements IRowMaper<Resource> {
 		this.uploadTime = uploadTime;
 		this.downloadTimes = downloadTimes;
 		this.browseTimes = browseTimes;
-		this.reviewStatus = reviewStatus;
+		this.reviewStatusId = reviewStatusId;
+		this.fileSize = fileSize;
 	}
-	
+
 	public Resource() {
 		
 	}
@@ -55,7 +56,8 @@ public class Resource implements IRowMaper<Resource> {
 		res.setUploadTime(rs.getTime("uploadTime"));
 		res.setDownloadTimes(rs.getInt("downloadTimes"));
 		res.setBrowseTimes(rs.getInt("browseTimes"));
-		res.setReviewStatus(rs.getInt("reviewStatus"));
+		res.setReviewStatusId(rs.getInt("reviewStatusId"));
+		res.setFileSize(rs.getInt("fileSize"));
 				
 		return res;
 	}
@@ -120,12 +122,23 @@ public class Resource implements IRowMaper<Resource> {
 	public void setBrowseTimes(int browseTimes) {
 		this.browseTimes = browseTimes;
 	}
-	public int getReviewStatus() {
-		return reviewStatus;
+
+	public int getReviewStatusId() {
+		return reviewStatusId;
 	}
-	public void setReviewStatus(int reviewStatus) {
-		this.reviewStatus = reviewStatus;
+
+	public void setReviewStatusId(int reviewStatusId) {
+		this.reviewStatusId = reviewStatusId;
 	}
+
+	public int getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
+	}
+
 	
 
 }

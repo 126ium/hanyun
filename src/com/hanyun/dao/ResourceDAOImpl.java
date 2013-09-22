@@ -13,8 +13,8 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 	public void add(Resource... models) throws SQLException {
 		for (Resource r : models) {
 			factory.execute(
-					"INSERT INTO t_resource (fileId, userId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatus)"
-							+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+					"INSERT INTO t_Resource (fileId, userId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatusId, fileSize)"
+							+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
 					r.getFileId(),
 					r.getUserId(),
 					r.getResourceId(), 
@@ -25,20 +25,21 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 					r.getUploadTime(), 
 					r.getDownloadTimes(),
 					r.getBrowseTimes(),
-					r.getReviewStatus());
+					r.getReviewStatusId(),
+					r.getFileSize());
 		}
 	}
 
 	@Override
 	public void delete(Resource... models) throws SQLException {
 		for (Resource r : models) {
-			factory.execute("DELETE FROM t_resource WHERE fileId = ?", r.getFileId());
+			factory.execute("DELETE FROM t_Resource WHERE fileId = ?", r.getFileId());
 		}
 	}
 
 	@Override
 	public List<Resource> getAll() throws SQLException {
-		return factory.getAll("SELECT * FROM t_resource", new Resource());
+		return factory.getAll("SELECT * FROM t_Resource", new Resource());
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 		try {
 			List listr = new ResourceDAOImpl().getAll();
 			System.out.println();
-			Resource res = new Resource(2, 1, 1, 2, "filename", "fileMd5", "fileurl", new Date(), 2, 2, 2);
+//			Resource res = new Resource(2, 1, 1, 2, "filename", "fileMd5", "fileurl", new Date(), 2, 2, 2);
 //			new ResourceDAOImpl().add(res);
 		} catch (Exception e) {
 			// TODO: handle exception

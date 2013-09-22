@@ -34,10 +34,8 @@ public class ConnectionBroker implements BuildConnection {
 	public ConnectionBroker() {
 		super();
 		Properties prop = new Properties();
-		File propFile = new File("hanyun.property");
-		System.out.println(propFile.getAbsolutePath());
 		try {
-			prop.load(new FileReader(propFile));
+			prop.load(ConnectionBroker.class.getClassLoader().getResourceAsStream("hanyun.property"));
 		} catch (IOException e) {
 			System.err.println("配置文件读取错误！");
 			e.printStackTrace();

@@ -2,10 +2,13 @@ package com.hanyun.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.Date;
 
-
+/**
+ * User model
+ * @author IntSilence
+ *
+ */
 public class User implements IRowMaper<User> {
 	private int userId;
 	private String userName;
@@ -17,14 +20,16 @@ public class User implements IRowMaper<User> {
 	private Date lastLoginTime;
 	private int userStatus;
 	private String avatarUrl;
-		
+	private String registerIP;
+	private Date registerTime;		
 	
-	public User(int userId, String username, String password, String salt,
-			int role, String email, String lastLoginIP, Time lastLoginTime,
-			int userStatus, String avatarUrl) {
+	public User(int userId, String userName, String password, String salt,
+			int role, String email, String lastLoginIP, Date lastLoginTime,
+			int userStatus, String avatarUrl, String registerIP,
+			Date registerTime) {
 		super();
 		this.userId = userId;
-		this.userName = username;
+		this.userName = userName;
 		this.password = password;
 		this.salt = salt;
 		this.role = role;
@@ -33,6 +38,8 @@ public class User implements IRowMaper<User> {
 		this.lastLoginTime = lastLoginTime;
 		this.userStatus = userStatus;
 		this.avatarUrl = avatarUrl;
+		this.registerIP = registerIP;
+		this.registerTime = registerTime;
 	}
 
 	public User() {
@@ -51,7 +58,9 @@ public class User implements IRowMaper<User> {
 		user.setLastLoginIP(rs.getString("lastLoginIP"));
 		user.setLastLoginTime(rs.getTime("lastLoginTime"));
 		user.setUserStatus(rs.getInt("userStatus"));
-		user.setAvatarUrl(rs.getString("avatarUrl"));		
+		user.setAvatarUrl(rs.getString("avatarUrl"));	
+		user.setRegisterIP(rs.getString("registerIP"));
+		user.setRegisterTime(rs.getTime("registerTime"));
 		
 		return user;
 	}
@@ -154,5 +163,21 @@ public class User implements IRowMaper<User> {
 
 	public void setAvatarUrl(String avatarUrl) {
 		this.avatarUrl = avatarUrl;
+	}
+
+	public String getRegisterIP() {
+		return registerIP;
+	}
+
+	public void setRegisterIP(String registerIP) {
+		this.registerIP = registerIP;
+	}
+
+	public Date getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(Date registerTime) {
+		this.registerTime = registerTime;
 	}
 }

@@ -16,11 +16,11 @@ drop table if exists t_ResourceCategory;
 
 drop table if exists t_User;
 
-drop table if exists t_downloadDetails;
+drop table if exists t_DownloadDetails;
 
-drop table if exists t_reviewStatus;
+drop table if exists t_ReviewStatus;
 
-drop table if exists t_userRole;
+drop table if exists t_UserRole;
 
 /*==============================================================*/
 /* Table: t_Image                                               */
@@ -94,9 +94,9 @@ create table t_User
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
-/* Table: t_downloadDetails                                     */
+/* Table: t_DownloadDetails                                     */
 /*==============================================================*/
-create table t_downloadDetails
+create table t_DownloadDetails
 (
    downloadId           int not null auto_increment,
    fileId               int not null,
@@ -107,31 +107,31 @@ create table t_downloadDetails
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
-/* Table: t_reviewStatus                                        */
+/* Table: t_ReviewStatus                                        */
 /*==============================================================*/
-create table t_reviewStatus
+create table t_ReviewStatus
 (
    reviewStatusId       int not null,
    reviewStatusName     varchar(1024) not null,
    primary key (reviewStatusId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO t_reviewStatus VALUES(1,"未审核");
-INSERT INTO t_reviewStatus VALUES(2,"审核通过");
-INSERT INTO t_reviewStatus VALUES(3,"审核未通过");
+INSERT INTO t_ReviewStatus VALUES(1,"未审核");
+INSERT INTO t_ReviewStatus VALUES(2,"审核通过");
+INSERT INTO t_ReviewStatus VALUES(3,"审核未通过");
 
 /*==============================================================*/
-/* Table: t_userRole                                            */
+/* Table: t_UserRole                                            */
 /*==============================================================*/
-create table t_userRole
+create table t_UserRole
 (
    userRoleId           int not null,
    userRoleName         varchar(1024) not null,
    primary key (userRoleId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO t_userRole (userRoleId, userRoleName) VALUES(1, "管理员");
-INSERT INTO t_userRole (userRoleId, userRoleName) VALUES(2, "普通用户");
-INSERT INTO t_userRole (userRoleId, userRoleName) VALUES(3, "游客");
+INSERT INTO t_UserRole (userRoleId, userRoleName) VALUES(1, "管理员");
+INSERT INTO t_UserRole (userRoleId, userRoleName) VALUES(2, "普通用户");
+INSERT INTO t_UserRole (userRoleId, userRoleName) VALUES(3, "游客");
 
 
 alter table t_Resource add constraint FK_Belong foreign key (resourceId)
@@ -141,23 +141,23 @@ alter table t_Resource add constraint FK_Upload foreign key (userId)
       references t_User (userId) on delete restrict on update restrict;
 
 alter table t_Resource add constraint FK_authority foreign key (userRoleId)
-      references t_userRole (userRoleId) on delete restrict on update restrict;
+      references t_UserRole (userRoleId) on delete restrict on update restrict;
 
 alter table t_Resource add constraint FK_belong2 foreign key (imageId)
       references t_Image (imageId) on delete restrict on update restrict;
 
 alter table t_Resource add constraint FK_belong3 foreign key (reviewStatusId)
-      references t_reviewStatus (reviewStatusId) on delete restrict on update restrict;
+      references t_ReviewStatus (reviewStatusId) on delete restrict on update restrict;
 
 alter table t_ResourceCategory add constraint FK_Has foreign key (t_R_resourceId)
       references t_ResourceCategory (resourceId) on delete restrict on update restrict;
 
 alter table t_User add constraint FK_have foreign key (userRoleId)
-      references t_userRole (userRoleId) on delete restrict on update restrict;
+      references t_UserRole (userRoleId) on delete restrict on update restrict;
 
-alter table t_downloadDetails add constraint FK_downloadResource foreign key (fileId)
+alter table t_DownloadDetails add constraint FK_downloadResource foreign key (fileId)
       references t_Resource (fileId) on delete restrict on update restrict;
 
-alter table t_downloadDetails add constraint FK_downloadUser foreign key (userId)
+alter table t_DownloadDetails add constraint FK_downloadUser foreign key (userId)
       references t_User (userId) on delete restrict on update restrict;
 

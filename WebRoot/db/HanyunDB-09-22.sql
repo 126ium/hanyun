@@ -64,15 +64,15 @@ create table t_ResourceCategory
    resourceName         varchar(64) not null,
    primary key (resourceId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO t_resourcecategory (resourceId, resourceName) VALUES(1,"文档");
-INSERT INTO t_resourcecategory (resourceId, resourceName) VALUES(2,"图片");
-INSERT INTO t_resourcecategory (resourceId, resourceName) VALUES(3,"视频");
-INSERT INTO t_resourcecategory (resourceId, resourceName) VALUES(4,"音乐");
-INSERT INTO t_resourcecategory VALUES(5,1,"PDF文档");
-INSERT INTO t_resourcecategory VALUES(6,1,"TXT文档");
-INSERT INTO t_resourcecategory VALUES(7,1,"DOC文档");
-INSERT INTO t_resourcecategory VALUES(8,3,"短片");
-INSERT INTO t_resourcecategory VALUES(9,3,"电影");
+INSERT INTO t_ResourceCategory (resourceId, resourceName) VALUES(1,"文档");
+INSERT INTO t_ResourceCategory (resourceId, resourceName) VALUES(2,"图片");
+INSERT INTO t_ResourceCategory (resourceId, resourceName) VALUES(3,"视频");
+INSERT INTO t_ResourceCategory (resourceId, resourceName) VALUES(4,"音乐");
+INSERT INTO t_ResourceCategory VALUES(5,1,"PDF文档");
+INSERT INTO t_ResourceCategory VALUES(6,1,"TXT文档");
+INSERT INTO t_ResourceCategory VALUES(7,1,"DOC文档");
+INSERT INTO t_ResourceCategory VALUES(8,3,"短片");
+INSERT INTO t_ResourceCategory VALUES(9,3,"电影");
 
 /*==============================================================*/
 /* Table: t_User                                                */
@@ -115,9 +115,9 @@ create table t_reviewStatus
    reviewStatusName     varchar(1024) not null,
    primary key (reviewStatusId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO t_reviewstatus VALUES(1,"未审核");
-INSERT INTO t_reviewstatus VALUES(2,"审核通过");
-INSERT INTO t_reviewstatus VALUES(3,"审核未通过");
+INSERT INTO t_reviewStatus VALUES(1,"未审核");
+INSERT INTO t_reviewStatus VALUES(2,"审核通过");
+INSERT INTO t_reviewStatus VALUES(3,"审核未通过");
 
 /*==============================================================*/
 /* Table: t_userRole                                            */
@@ -129,9 +129,9 @@ create table t_userRole
    primary key (userRoleId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO t_userrole (userRoleId, userRoleName) VALUES(1, "管理员");
-INSERT INTO t_userrole (userRoleId, userRoleName) VALUES(2, "普通用户");
-INSERT INTO t_userrole (userRoleId, userRoleName) VALUES(3, "游客");
+INSERT INTO t_userRole (userRoleId, userRoleName) VALUES(1, "管理员");
+INSERT INTO t_userRole (userRoleId, userRoleName) VALUES(2, "普通用户");
+INSERT INTO t_userRole (userRoleId, userRoleName) VALUES(3, "游客");
 
 
 alter table t_Resource add constraint FK_Belong foreign key (resourceId)

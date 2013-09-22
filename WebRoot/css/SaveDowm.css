@@ -1,0 +1,78 @@
+.new-sbtn {
+background-position: 0 -918px;
+font-size: 12px;
+height: 34px;
+line-height: 34px;
+padding-left: 35px;
+position: relative;
+margin-right: 10px;}
+
+.new-dbtn, .new-sbtn {
+color: #333;
+background: url('/res/static/images/btn_sprit.gif?t=201309043311?@=-1') no-repeat 0 0;
+display: inline-block;
+_width: 35px;
+white-space: nowrap;
+outline: 0;
+text-decoration: none;}
+
+.icon-share-save {
+top: 8px;
+left: 10px;
+position: absolute;
+display: block;
+height: 20px;
+width: 20px;
+background: url('/res/static/images/btn_icon.gif?t=201309043311?@=-1') no-repeat;
+background-position: -208px -465px;}
+
+address, cite, dfn, em, var {
+font-style: normal;
+}
+
+.new-sbtn b {
+background-position: right -918px;
+color: #666;
+padding-right: 10px;
+height: 34px;
+line-height: 34px;}
+
+.new-dbtn b, .new-sbtn b {
+font-weight: 100;
+display: block;
+background: url('/res/static/images/btn_sprit.gif?t=201309043311?@=-1') no-repeat right 0;
+text-decoration: none;
+text-align: center;
+cursor: pointer;}
+
+.new-dbtn {
+background-position: 0 -1028px;
+text-decoration: none;
+font-size: 12px;
+height: 34px;
+line-height: 34px;
+padding-left: 35px;
+position: relative;
+margin-right: 10px;}
+
+.new-dbtn em{
+top:8px;}
+
+.icon-download {
+background-position: -159px -39px;
+left: 10px;
+position: absolute;
+display: block;
+height: 20px;
+width: 20px;
+background: url('/res/static/images/btn_icon.gif?t=201309043311?@=-1') no-repeat;
+}
+
+.new-dbtn b {
+background-position: right -1028px;
+color: #666;
+padding-right: 10px;
+height: 34px;
+line-height: 34px;
+text-decoration: none;
+}

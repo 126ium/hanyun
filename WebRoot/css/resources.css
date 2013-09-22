@@ -1,0 +1,370 @@
+#mainContent{
+margin:0 auto;
+width:980px;
+}
+
+.b-rlv{
+position:relative;
+z-index:1;}
+
+.clearfix{
+zoom:1;}
+
+.bdy{
+padding:20px 20px 0;
+}
+
+section,aside,dt,div,header{
+display:block;
+}
+
+*{
+font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;
+}
+
+.clearfix:after{
+content:"\20";
+display:block;
+height:0;
+line-height:0;
+font-size:0;
+clear:both;
+}
+
+.main{
+background:#fff;
+}
+
+.b-bdr-slv{
+border:1px solid #e7e7e7;
+}
+
+*{
+margin:0;
+padding:0;}
+
+.properties{
+float:right;
+width:227px;
+background:#f9f9f9;
+z-index:999;
+position: relative;
+border: 1px solid #E7E7E7;
+border-width:0 0 0 1px;}
+
+.property-list{
+border-width:0 0 0 1px;}
+
+dl,p,dd,li{
+margin:0;
+padding:0}
+
+dl{
+display:block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;}
+
+.properties dt{
+padding:10px 0;}
+
+.properties dd, .properties dt{
+margin:0 12px 0 12px;}
+
+.properties .thumb{
+cursor:default;}
+
+.b-fl{
+float:left;}
+
+.properties .thumb a:link{
+text-decoration:none;}
+
+.properties .thumb .pic-frm{
+width:70px;
+height:70px;
+font-size:21px;
+float:left;
+zoom:1;
+padding:3px;
+background:white;
+border:1px solid #ddd;
+box-shadow:0 0 1px rgba(0,0,0,.1);}
+
+.properties .pic-frm{
+display:table-cell;
+text-align:center;
+vertical-align:middle;}
+
+.properties .thumb *{
+cursor:pointer;}
+
+.pic-frm-pic{
+vertical-align:middle;
+height:70px;}
+
+img{
+border:0 none;}
+
+.myphoto-shadow{
+box-shadow:0 0 4px rgba(0,0,0,.1);
+font-size:40px;
+-webkit-transform: skew(7deg) rotate(4deg);
+-moz-transform: skew(7deg) rotate(4deg);
+-o-transform: skew(7deg) rotate(4deg);
+position: absolute;
+width: 74px;
+height: 75px;
+top: 13px;
+left: 15px;
+background: rgba(0,0,0,.1);
+z-index: -1;}
+
+.properties .share-frm-lbl{
+padding-left:10px;
+color:black;
+width:109px;
+font-size:14px;
+letter-spacing:1px;}
+
+p{
+display:block;
+-webkit-margin-before:1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;}
+
+.properties .share-frm-lbl a{
+display:block;
+line-height:40px;
+padding:0 0 2px;
+font-weight:600;
+color:black;
+width:109px;}
+
+.ellipsis{
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;}
+
+.cc-ct-b a.unfollow, .cc-ct-b a.unfollow:link, .cc-ct-b a.unfollow:visited, .cc-ct-b a.unfollow:hover, .cc-ct-b a.unfollow:active{
+background-position:-10px -10px;
+color:white;}
+
+.cc-ct-b a.concern-btn{
+height:26px;
+line-height:26px;
+padding:0 3px 0 18px;
+position:relative;
+background:url(http://yun.baidu.com/res/static/images/personal_page/concern_btn.png?t=201309043311?@=-1) -10px -10px no-repeat;
+width:69px;}
+
+.cc-ct-b a.concern-btn span{
+text-align:center;
+font-size:14px;
+font-weight:bold;}
+
+span.follow{
+display:block;}
+
+span.unfollow{
+display:none;}
+
+.properties dd{
+line-height:24px;
+height:24px;
+zoom:1;}
+
+dd{
+display:block;
+-webkit-margin-start: 40px;}
+
+.albumfile-num li{
+padding:0 3px 3px;
+float:left;
+border-right-width:1px;
+border-right-style:solid;
+text-align:center;
+width:43px;
+list-style:none;
+border-color:#e9dfd5;}
+
+li{
+display:list-item;}
+
+.albumfile-num li a{
+color:#333;
+font-size:12px;}
+
+.albumfile-num a{
+width:50px;}
+
+.albumfile-num li strong{
+line-height:20px;
+display:block;
+margin-bottom:5px;
+font-weight:400;
+font-size:18px;
+color:#333;}
+
+a:-webkit-any-link{
+cursor:auto;}
+
+.albumfile-num .fanscnt{
+border-right-width:0;}
+
+.hotrec-ele .hr{
+height:1px;
+overflow:hidden;
+border:0 none;
+margin:14px 15px 7px;
+background:#e3e3e3;
+border-bottom:1px solid #fff;}
+
+.hotrec-ele dt{
+color:#282828;
+font-weight:bold;}
+
+.hotrec-ele dt span.hotrec-tit{
+float:left;
+font-size:14px;}
+
+.hotrec-ele dt span{
+width:150px;}
+
+.hotrec-ele dt, .hotrec-ele dd{
+line-height:16px;}
+
+.media_type_4 .slide-show{
+height:722px;}
+
+.slide-show{
+overflow:hidden;
+width:auto;
+_float:left;}
+
+.media_type_4 .slide-show-viewer, .media_type_4 .slide-show-viewer, .media_type_4 .slide-show-viewer-inner{
+height:438px;}
+
+.slide-show-viewer, .slide-show-viewer-inner{
+-webkit-user-select:none;}
+
+.slide-show-viewer{
+overflow:hidden;
+clear:both;}
+
+.albumfile-show-header{
+padding:8px 0;
+border:0;}
+
+.albumfile-show-header h2{
+_width:360px;}
+
+h2{
+width:380px;
+margin:8px 0 0 10px;
+font-size:14px;
+display: block;
+-webkit-margin-before: 0.83em;
+-webkit-margin-after: 0.83em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
+.sprite-list-ic {
+background: url('/res/static/images/sprite_list_icon.gif?t=201309043311?@=-1?@=-1') no-repeat scroll 9999px 9999px transparent;}
+
+.b-ic-book {
+margin-right: 5px;
+width: 26px;
+height: 22px;
+position: relative;}
+
+.b-in-blk {
+display: inline-block;
+zoom: 1;
+vertical-align: middle;}
+
+.mainhr {
+height: 1px;
+overflow: hidden;
+border: 0 none;
+margin: 0 12px 7px;
+background: #e3e3e3;
+border-bottom: 1px solid #fff;
+float: left;
+width: 97%;
+_width: 93%;}
+
+.video-thumb-outer {
+_padding-top: 5px;
+top:58px;
+width:440px;
+margin:0 auto;
+padding-top:36px;}
+
+.video-thumb-frm{
+top:8px;
+padding:36px 0;
+height:260px;
+width:440px;
+overflow:hidden;
+position:relative;
+background:black;}
+
+.pix-outer{
+_font-size:210px;}
+
+.pic-frm, .video-thumb-frm {
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+}
+
+.video-thumb-failed {
+margin: 0;
+_margin: 80px 0 0;
+background: url('/res/static/images/view_share_video_fail.png?t=201309043311?@=-1') 50% 0 no-repeat;}
+
+.view-failed {
+display: none;
+text-align: center;
+color: #ccc;
+font-weight: 700;
+font-size: 14px;
+padding: 159px 0 0;
+_padding-top: 150px;}
+
+.video-thumb-mask {
+top: 111px;
+height: 326px;
+width: 440px;
+overflow: hidden;
+position: absolute;
+background: black;
+filter: progid:DXImageTransform.Microsoft.Alpha(opacity=30);
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=30)";
+cursor:pointer;}
+
+.album-cnt-ct {
+line-height: 10px;
+color: #a2a2a2;
+padding: 10px 5px 16px 10px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: 702px;}
+
+.album-cnt-ct .album-name-label {
+border-left: 1px solid #a2a2a2;
+padding-left: 5px;}
+
+.viewshare-copy-outer{
+margin:20px 5px 0;
+position:relative;}
+
+.hrmargin{
+height:20px;}
+

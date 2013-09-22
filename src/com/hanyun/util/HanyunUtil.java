@@ -1,6 +1,12 @@
 package com.hanyun.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
@@ -22,33 +28,76 @@ public class HanyunUtil {
 	}
 	
 	/**
+	 * Convert byte to Hex string
+	 * @param in byteArray data
+	 * @return Hex string
+	 */
+	public static String byteToHex(byte[] in) {
+		StringBuffer buf = new StringBuffer();
+		for (int offset = 0; offset < in.length; offset++) {
+			int i;
+			i = in[offset];
+			if (i < 0)
+				i += 256;
+			if (i < 16)
+				buf.append("0");
+			buf.append(Integer.toHexString(i));
+		}
+		
+		return buf.toString().toUpperCase();
+	}
+	
+	/**
 	 * MD5 加密
 	 * @param plainText 带加密文本
 	 * @return String 加密后的字符串
 	 */
 	public String MD5(String plainText) {
-		StringBuffer buf = new StringBuffer();
+		String result = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(plainText.getBytes("UTF-8"));
-			byte b[] = md.digest();
-			int i;
-			// byte array 转字符串
-			for (int offset = 0; offset < b.length; offset++) {
-				i = b[offset];
-				if (i < 0)
-					i += 256;
-				if (i < 16)
-					buf.append("0");
-				buf.append(Integer.toHexString(i));
-			}
+			result = byteToHex(md.digest());		
 		} catch (NoSuchAlgorithmException e) {
+			LogUtil.log("WARNING", e.toString());
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e2) {
+			LogUtil.log("WARNING", e2.toString());
 			e2.printStackTrace();
 		}
+		return result;
+	}
+	
+	/**
+	 * Encode a file to MD5 hash code
+	 * @param data A file
+	 * @return String Hex string
+	 */
+	public static String MD5(File data) {
+		String result = null;
 		
-		return buf.toString().toUpperCase();
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			FileInputStream inStream = new FileInputStream(data);
+			FileChannel channel = inStream.getChannel();
+			int length = (int) channel.size();
+			MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, length);
+			channel.close();
+			inStream.close();
+			md.update(buffer);
+			result = byteToHex(md.digest());
+		} catch (NoSuchAlgorithmException e) {
+			LogUtil.log("WARNING", e.toString());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			LogUtil.log("WARNING", e.toString());
+			e.printStackTrace();
+		} catch (IOException e) {
+			LogUtil.log("WARNING", e.toString());
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -71,5 +120,8 @@ public class HanyunUtil {
 		System.out.println(instance.MD5("intsilence"));
 		System.out.println(instance.getSalt());
 		System.out.println(instance.MD5(instance.MD5("intsilence") + instance.getSalt()));
+		
+		File testFile = new File("/home/ezio/test_fs");
+		System.out.println(MD5(testFile));
 	}
 }

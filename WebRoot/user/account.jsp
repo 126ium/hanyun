@@ -44,7 +44,9 @@
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Profile</h3>
 							</div>
-							<div class="panel-body">TODO</div>
+							<div class="panel-body">
+								<%@ include file="profile.jsp" %>
+							</div>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="settings">
@@ -52,7 +54,9 @@
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Account Settings</h3>
 							</div>
-							<div class="panel-body">TODO</div>
+							<div class="panel-body">
+								<%@ include file="settings.jsp" %>
+							</div>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="resource">
@@ -60,11 +64,14 @@
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Resource Management</h3>
 							</div>
-							<div class="panel-body">TODO</div>
+							<div class="panel-body">
+								<%@ include file="resmanage.jsp" %>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<%@ include file="upload.jsp" %>
 			<%@ include file="../layouts/_footer.jsp" %>
 		</div>
 		<script src="../js/jquery.js"></script>

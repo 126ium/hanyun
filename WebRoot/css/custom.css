@@ -11,6 +11,18 @@
 	border-radius: 6px;
 }
 
+#login_container {
+	margin-top: 60px;
+}
+
+#login_container h1 {
+	line-height: 55px;
+}
+
+#wrapper label {
+	display: inline;
+}
+
 .center {
 	text-align: center;
 }

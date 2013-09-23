@@ -26,6 +26,10 @@
 					<div id="login" class="animate form">
 						<form action="#" autocomplete="on">
 							<h1>Sign in</h1>
+							<!-- To hide this div, set the "style" as "display: none;"  -->
+							<div class="alert alert-danger" id="alert" style="display: block;">
+								<p>Message</p>
+							</div>
 							<p>
 								<label for="username" class="uname" data-icon="u"> Your email or username</label>
 								<input id="username" name="username" required="required" type="text" placeholder="mymail@mail.com"/>
@@ -46,6 +50,10 @@
 					<div id="register" class="animate form">
 						<form action="#" autocomplete="on">
 							<h1>Sign up</h1>
+							<!-- To hide this div, set the "style" as "display: none;"  -->
+							<div class="alert alert-danger" id="alert" style="display: block;">
+								<p>Message</p>
+							</div>
 							<p>
 								<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
 								<input id="usernamesignup" name="usernaamesignup" required="required" type="text" placeholder="Your username" />

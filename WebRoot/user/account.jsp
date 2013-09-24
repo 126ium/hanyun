@@ -36,7 +36,9 @@
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Resource Statistics</h3>
 							</div>
-							<div class="panel-body">TODO</div>
+							<div class="panel-body">
+								<%@ include file="restatistics.jsp" %>
+							</div>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="profile">
@@ -76,5 +78,13 @@
 		</div>
 		<script src="../js/jquery.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$("#fileupload").change(function() {
+				var result = $("#fileupload").val();
+				var reg = /[^\\\/]*[\\\/]+/g; 
+				result = result.replace(reg, ''); 
+				$("#filenameInput").val(result);
+			});
+		</script>
 	</body>
 </html>

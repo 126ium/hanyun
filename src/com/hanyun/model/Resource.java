@@ -20,11 +20,12 @@ public class Resource implements IRowMaper<Resource> {
 	private int downloadTimes;
 	private int browseTimes;
 	private int reviewStatusId;
-	private int fileSize;	
+	private int fileSize;
+	private int userRoleId;
 
 	public Resource(int fileId, int userId, int resourceId, int imageId,
 			String fileName, String fileMD5, String fileUrl, Date uploadTime,
-			int downloadTimes, int browseTimes, int reviewStatusId, int fileSize) {
+			int downloadTimes, int browseTimes, int reviewStatusId, int fileSize, int userRoleId) {
 		super();
 		this.fileId = fileId;
 		this.userId = userId;
@@ -38,6 +39,7 @@ public class Resource implements IRowMaper<Resource> {
 		this.browseTimes = browseTimes;
 		this.reviewStatusId = reviewStatusId;
 		this.fileSize = fileSize;
+		this.userRoleId = userRoleId;
 	}
 
 	public Resource() {
@@ -58,7 +60,8 @@ public class Resource implements IRowMaper<Resource> {
 		res.setBrowseTimes(rs.getInt("browseTimes"));
 		res.setReviewStatusId(rs.getInt("reviewStatusId"));
 		res.setFileSize(rs.getInt("fileSize"));
-				
+		res.setUserRoleId(rs.getInt("userRoleId"));
+		
 		return res;
 	}
 		
@@ -139,6 +142,11 @@ public class Resource implements IRowMaper<Resource> {
 		this.fileSize = fileSize;
 	}
 
-	
+	public int getUserRoleId() {
+		return userRoleId;
+	}
 
+	public void setUserRoleId(int userRoleId) {
+		this.userRoleId = userRoleId;
+	}
 }

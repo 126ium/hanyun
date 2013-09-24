@@ -40,12 +40,8 @@ public class UserServiceImpl implements IUserService{
 	 * @return
 	 */
 	public boolean validateUsername(String username) {
-		try {
-			if (null != userDAO.get(username)) {
-				return false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (null != userDAO.get(username)) {
+			return false;
 		}
 		
 		if (username.length() < 4)
@@ -60,13 +56,10 @@ public class UserServiceImpl implements IUserService{
 	 * @return
 	 */
 	public boolean validateEmail(String email) {
-		try {
-			if (null != userDAO.getByEmail(email)) {
-				return false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (null != userDAO.getByEmail(email)) {
+			return false;
 		}
+
 		if (!isEmail(email))
 			return false;
 		
@@ -96,10 +89,16 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public User login(String userName, String password) throws Exception {
-		String salt = userDAO.getSalt(userName);
+	public User login(String userName, String password) {
+		User user = userDAO.get(userName);
+		if (null == user) 
+			return null;
+		String salt = user.getSalt();
 		password = u.MD5(u.MD5(password) + salt);
-		return userDAO.login(userName, password);
+		if (password.equalsIgnoreCase(user.getPassword()))
+			return user;
+		else 
+			return null;
 	}
 
 	@Override
@@ -107,6 +106,19 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
+	// test
+//	public static void main(String...args) {
+//		UserServiceImpl userService = new UserServiceImpl();
+//		
+//		
+//		User user = userService.userDAO.get("intsilence");
+//		System.out.println(user);
+//
+//		
+//	}
 	
 	
 }

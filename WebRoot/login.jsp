@@ -27,8 +27,11 @@
 				<a class="hiddenanchor" id="tologin"></a>
 				<div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="login.action" autocomplete="on"> 
+                            <form id="loginForm" mothod="post" autocomplete="on"> 
                                 <h1>Log in</h1> 
+                                <div class="alert alert-danger" id="loginAlertDiv" style="display: none;">
+									<p id="loginErrMsg">Warning message.</p>
+								</div>
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Your email or username </label>
                                     <input id="username" name="userName" required type="text" placeholder="myusername or mymail@mail.com"/>
@@ -42,7 +45,7 @@
 									<label for="loginkeeping">Keep me logged in</label>
 								</p>
                                 <p class="login button"> 
-                                    <input type="submit" value="Login" /> 
+                                   <input type="button" class="login" onclick="javacript:void(0)" value="Login"/> 
 								</p>
                                 <p class="change_link">
 									Not a member yet ?
@@ -89,45 +92,64 @@
 	</div>
 	<script type="text/javascript">
 		$(function(){
-		$(".reg").click(function(){
+			$(".reg").click(function(){				
+				$('#regForm').form('submit', {   
+					url:'reg.action',   
+					onSubmit: function(){ 
+						if ($("#usernamesignup").val().length < 5) {
+							$("#alertDiv").attr("style", "display: block;");
+							$("#errMsg").html("Username is null or too short!");
+							return false;
+						}
+						if ($("#passwordsignup").val().length < 5) {
+							$("#alertDiv").attr("style", "display: block;");
+							$("#errMsg").html("Password is null or too short!");
+							return false;
+						}
+						if ($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
+							$("#alertDiv").attr("style", "display: block;");
+							$("#errMsg").html("Passwords do NOT match!");
+							return false;
+						}
+						var isEmail = /[a-z0-9-]{1,30}@[a-z0-9-]{1,65}.[a-z]{3}/ ;       
+						if (!isEmail.test($("#emailsignup").val().toLowerCase())) {
+							$("#alertDiv").attr("style", "display: block;");
+							$("#errMsg").html("Invalid Email Address!");
+							return false;
+						}
+					},   
+					success: function(data){ 
+						//alert("提交！");
+						var data = eval('(' + data + ')'); 
+						if (data.msg == null){
+							window.location="main.jsp";
+						} else {
+							$("#alertDiv").attr("style", "display: block;");
+							$("#errMsg").html(data.msg);						
+						}  
+					}       
+				}); 
+			});
 			
-			$('#regForm').form('submit', {   
-				url:'reg.action',   
-				onSubmit: function(){ 
-					if ($("#usernamesignup").val().length < 5) {
-						$("#alertDiv").attr("style", "display: block;");
-						$("#errMsg").html("Username is null or too short!");
-						return false;
-					}
-					if ($("#passwordsignup").val().length < 5) {
-						$("#alertDiv").attr("style", "display: block;");
-						$("#errMsg").html("Password is null or too short!");
-						return false;
-					}
-					if ($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
-						$("#alertDiv").attr("style", "display: block;");
-						$("#errMsg").html("Passwords do NOT match!");
-						return false;
-					}
-					var isEmail = /[a-z0-9-]{1,30}@[a-z0-9-]{1,65}.[a-z]{3}/ ;       
-					if (!isEmail.test($("#emailsignup").val().toLowerCase())) {
-						$("#alertDiv").attr("style", "display: block;");
-						$("#errMsg").html("Invalid Email Address!");
-						return false;
-					}
-				},   
-				success: function(data){ 
-					//alert("提交！");
-					var data = eval('(' + data + ')'); 
-					if (data.msg == null){
-						window.location="main.jsp";
-					} else {
-						$("#alertDiv").attr("style", "display: block;");
-						$("#errMsg").html(data.msg);						
-					}  
-				}       
-			}); 
-		 }); 
+			$(".login").click(function() {
+				$("#loginForm").form('submit', {
+					url:'login.action',
+					onSubmit: function() {
+						//check						
+					},
+					success : function(data) {
+						var data = eval('(' + data + ')');
+						if (data.msg == null) {
+							window.location = "index.jsp";
+						} else {
+							$("#loginAlertDiv").attr("style", "display: block;");
+							$("#loginErrMsg").html(data.msg);	
+						}
+					
+					}					
+				});				
+			});
+			 
 		});	 													 							 							 
 	</script>
 	<script src="js/bootstrap.min.js"></script>

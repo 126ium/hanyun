@@ -1,7 +1,9 @@
-package com.hanyun.model;
+package com.hanyun.model.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.hanyun.model.IRowMaper;
 
 
 public class Thumbnail implements IRowMaper<Thumbnail> {

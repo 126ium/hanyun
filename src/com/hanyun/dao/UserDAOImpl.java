@@ -66,7 +66,7 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 	 * 按用户名查找用户
 	 */
 	@Override
-	public User get(String name) throws SQLException {
+	public User get(String name) {
 		
 		return factory.get("SELECT * FROM t_User WHERE userName = ?", new User(), name);
 	}
@@ -74,7 +74,7 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 	/**
 	 * 按email查找用户
 	 */
-	public User getByEmail(String email) throws SQLException {
+	public User getByEmail(String email) {
 		return factory.get("SELECT * FROM t_User WHERE userEmail = ?", new User(), email);
 	}
 	
@@ -84,6 +84,7 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 		
 	}
 	
+	@Deprecated
 	public User login(String userName, String password) throws SQLException {
 		return factory.get("SELECT * FROM t_User WHERE userName = ? and userPassword = ?", new User(), userName, password);
 	}

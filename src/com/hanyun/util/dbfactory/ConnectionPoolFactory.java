@@ -12,6 +12,7 @@ import javax.swing.tree.RowMapper;
 import javax.ws.rs.GET;
 
 import com.hanyun.model.IRowMaper;
+import com.hanyun.util.LogUtil;
 
 
 /**
@@ -146,25 +147,24 @@ public class ConnectionPoolFactory {
 		return list;
 	}
 	
-	public <T> T get(String sql, IRowMaper<T> iRowMaper, Object...objects) throws SQLException {
-		Connection conn = getConnection();
-		// 没有事物处理
-		conn.setAutoCommit(true);
+	public <T> T get(String sql, IRowMaper<T> iRowMaper, Object...objects) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		T t = null;
-
 		try {
+			conn = getConnection();
+			// 没有事物处理
+			conn.setAutoCommit(true);
 			pstmt = conn.prepareStatement(sql);
 			setValues(pstmt, objects);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				t = iRowMaper.mapRow(rs, 0);
 			} else {
-				throw new SQLException("HANYUN ERROR : NO DATARECORD FOND IN RESULTSET!!");
+				LogUtil.log("HANYUN ATENTION","NO DATARECORD FOND IN RESULTSET!!");
 			}
 			if (rs.next()) {
-				throw new SQLException("HANYUN ATTTION : MORE THAN ONE DATARECORD FOND IN RESULTSET!!");
+				LogUtil.log("HANYUN ATENTION", "MORE THAN ONE DATARECORD FOND IN RESULTSET!!");
 			}
 			
 		} catch (SQLException e) {
@@ -181,7 +181,47 @@ public class ConnectionPoolFactory {
 		}
 		return t;
 	}
-
+	
+	/**
+	 * 查整形数据
+	 * @param sql
+	 * @param objects
+	 * @return
+	 * @throws Exception
+	 */
+	public int getInt(String sql,Object...objects) throws SQLException {
+		conn = getConnection();	
+		conn.setAutoCommit(true);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);  
+			setValues(pstmt,objects);  
+			rs = pstmt.executeQuery();
+			int t = 0;
+			if(rs.next()){
+				t = rs.getInt(1);
+			}else{
+				throw new SQLException("没有数据");
+			}
+			if(rs.next()){
+				throw new SQLException("数据不止一条");
+			}
+			return t;
+		} catch (SQLException e) {
+			throw e;
+		}finally{
+			try{
+				rs.close();
+			}catch (Exception e) {}
+			try{
+				pstmt.close();
+			}catch (Exception e) {}
+			conn.close();
+			
+		}
+	}
+	
 	/**
 	 * 私有的构造函数，外部无法访问
 	 */

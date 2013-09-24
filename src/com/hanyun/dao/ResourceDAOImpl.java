@@ -3,7 +3,8 @@ package com.hanyun.dao;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import com.hanyun.model.Resource;
+
+import com.hanyun.model.impl.Resource;
 import com.hanyun.util.dbfactory.ConnectionPoolFactory;
 
 public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
@@ -13,10 +14,10 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 	public void add(Resource... models) throws SQLException {
 		for (Resource r : models) {
 			factory.execute(
-					"INSERT INTO t_Resource (fileId, userId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatusId, fileSize)"
+					"INSERT INTO t_Resource (userId, userRoleId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatusId, fileSize)"
 							+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
-					r.getFileId(),
 					r.getUserId(),
+					r.getUserRoleId(),
 					r.getResourceId(), 
 					r.getImageId(),
 					r.getFileName(),
@@ -42,11 +43,6 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 		return factory.getAll("SELECT * FROM t_Resource", new Resource());
 	}
 
-	@Override
-	public Resource get(Resource model) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void update() throws SQLException {
@@ -64,6 +60,18 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Resource get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resource get(String name) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

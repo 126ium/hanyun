@@ -2,7 +2,8 @@ package com.hanyun.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import com.hanyun.model.Thumbnail;
+
+import com.hanyun.model.impl.Thumbnail;
 import com.hanyun.util.dbfactory.ConnectionPoolFactory;
 
 public class ThumbnailDAOImpl extends AbstractHanyunDAO<Thumbnail> {
@@ -33,12 +34,6 @@ public class ThumbnailDAOImpl extends AbstractHanyunDAO<Thumbnail> {
 	}
 
 	@Override
-	public Thumbnail get(Thumbnail model) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void update() throws SQLException {
 		// TODO Auto-generated method stub
 
@@ -53,6 +48,18 @@ public class ThumbnailDAOImpl extends AbstractHanyunDAO<Thumbnail> {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	@Override
+	public Thumbnail get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Thumbnail get(String name) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

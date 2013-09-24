@@ -17,6 +17,13 @@
 	</action>
 	<action name="reg" class="com.hanyun.struts.action.RegisterAction"></action>
 	<action name="logout" class="com.hanyun.struts.action.LogoutAction"></action>
+
+	<action name="upload" class="com.hanyun.struts.action.UploadAction">
+		<interceptor-ref name="fileUpload"/>
+		<interceptor-ref name="defaultStack"/>
+		<result name="success">/user/account.jsp</result>
+		<result name="input">/user/account.jsp</result>
+	</action>
 </package>
 
 

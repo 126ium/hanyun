@@ -14,7 +14,7 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 	public void add(Resource... models) throws SQLException {
 		for (Resource r : models) {
 			factory.execute(
-					"INSERT INTO t_Resource (userId, userRoleId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatusId, fileSize)"
+					"INSERT INTO t_Resource (userId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatusId, fileSize, userRoleId)"
 							+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
 					r.getUserId(),
 					r.getUserRoleId(),
@@ -27,7 +27,8 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 					r.getDownloadTimes(),
 					r.getBrowseTimes(),
 					r.getReviewStatusId(),
-					r.getFileSize());
+					r.getFileSize(),
+					r.getUserRoleId());
 		}
 	}
 

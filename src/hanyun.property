@@ -9,4 +9,7 @@ timeout = 100
 leaseTime = 60000
 logFile = DDConnectionBroker.log
 
+#------FILE STORAGE PROPERTIES----------------
+baseDir=/home/ezio/code/temp/hanyun_file
+
 #--------OTHER-------------------

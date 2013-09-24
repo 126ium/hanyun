@@ -9,10 +9,10 @@
 			</div>
 			<div class="modal-body">
 				<div class="container">
-					<form role="form">
+					<form role="form" action="upload" method="POST" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="filenameInput">Filename</label>
-							<input type="text" class="form-control" id="filenameInput" placeholder="Enter filename">
+							<input type="text" class="form-control" id="filenameInput" placeholder="Enter filename" name="filenameInput">
 						</div>
 						<div class="form-group">
 							<label for="permission">Permission:</label>
@@ -24,15 +24,15 @@
 						</div>
 						<div class="form-group">
 							<label for="fileupload">File upload</label>
-							<input type="file" id="fileupload">
+							<input type="file" id="fileupload" name="fileUpload">
 							<p class="help-block">Support type: .doc....</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Upload</button>
 						</div>
 					</form>
 				</div>	
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Upload</button>
 			</div>
 		</div>
 	</div>

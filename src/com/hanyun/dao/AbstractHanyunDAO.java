@@ -33,7 +33,15 @@ public abstract class AbstractHanyunDAO<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public abstract T get(T model) throws SQLException;
+	public abstract T get(int id) throws SQLException;
+	
+	/**
+	 * 查，按名字
+	 * @param name
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract T get(String name) throws SQLException;
 	
 	/**
 	 * 改

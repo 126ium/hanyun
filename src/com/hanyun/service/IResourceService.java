@@ -1,6 +1,7 @@
 package com.hanyun.service;
 
 import java.io.File;
+import java.sql.SQLException;
 
 public interface IResourceService {
 	
@@ -31,4 +32,13 @@ public interface IResourceService {
 	 * @throws Exception
 	 */
 	public boolean saveToDb(File src, String filename, int userId, String permission) throws Exception;
+	
+	/**
+	 * Get personal uploaded resource count by resource type
+	 * @param userId
+	 * @param resourceId
+	 * @return int Resource count
+	 * @throws Exception
+	 */
+	public int getPersonalResCount(int userId, int resourceId) throws Exception;
 }

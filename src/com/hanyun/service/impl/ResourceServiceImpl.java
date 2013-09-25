@@ -210,6 +210,10 @@ public class ResourceServiceImpl implements IResourceService {
 		return resourceDAO.getPersonalResCount(userId, resourceId);
 	}
 	
+	public int getAllResCount(int resourceId) throws Exception {
+		return resourceDAO.getAllResCount(resourceId);
+	}
+	
 	public static void main(String...args) throws SQLException {
 		ResourceServiceImpl s = new ResourceServiceImpl();
 		List<Resource> list = new ArrayList<Resource>();

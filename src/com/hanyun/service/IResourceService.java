@@ -41,4 +41,13 @@ public interface IResourceService {
 	 * @throws Exception
 	 */
 	public int getPersonalResCount(int userId, int resourceId) throws Exception;
+	
+	/**
+	 * Get all users uploaded resource count by resource type
+	 * @param userId
+	 * @param resourceId
+	 * @return
+	 * @throws Exception
+	 */
+	public int getAllResCount(int resourceId) throws Exception;
 }

@@ -32,7 +32,7 @@
 						<h2>Uploaded: xxx files</h2>
 					</aside>
 					<ul id="personalTab" class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>
+						<li class="active" id="statis"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>
 						<li><a href="#profile" data-toggle="tab">Profile</a></li>
 						<li><a href="#settings" data-toggle="tab">Account settings</a></li>
 						<li><a href="#resource" data-toggle="tab">Resource management</a></li>
@@ -92,5 +92,7 @@
 				$("#filenameInput").val(result);
 			});
 		</script>
+		<script src="../js/chart.js"></script>
+		<script src="../js/drawchart.js"></script>
 	</body>
 </html>

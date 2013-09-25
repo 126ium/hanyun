@@ -16,7 +16,7 @@
 		<%@ include file="../layouts/_header.jsp"%>
 		<div class="container">
 			<div class="row marketing">
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<aside>
 						<section>
 							<h1><img alt="username" class="avatar img-rounded" src="avatar/default_avatar.jpg">User</h1>
@@ -24,13 +24,13 @@
 						<h2>Uploaded: 9</h2>
 					</aside>
 					<ul id="personalTab" class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>
+						<li class="active" id="statis"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>
 						<li><a href="#profile" data-toggle="tab">Profile</a></li>
 						<li><a href="#settings" data-toggle="tab">Account settings</a></li>
 						<li><a href="#resource" data-toggle="tab">Resource management</a></li>
 					</ul>
 				</div>
-				<div id="personalTabContent" class="col-lg-8 tab-content">
+				<div id="personalTabContent" class="col-lg-9 tab-content">
 					<div class="tab-pane fade active in" id="statistics">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -86,5 +86,7 @@
 				$("#filenameInput").val(result);
 			});
 		</script>
+		<script src="../js/chart.js"></script>
+		<script src="../js/drawchart.js"></script>
 	</body>
 </html>

@@ -29,7 +29,7 @@
 						<section>
 							<h1><img alt="<%=user.getUserName() + "'s avatar" %>" class="avatar img-rounded" src="<%=user.getAvatarUrl() %>"><%=user.getUserName() %></h1>
 						</section>
-						<h2>Uploaded: xxx files</h2>
+						<h2 id="uploaded"></h2>
 					</aside>
 					<ul id="personalTab" class="nav nav-pills nav-stacked">
 						<li class="active" id="statis"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>

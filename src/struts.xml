@@ -17,6 +17,8 @@
 	</action>
 	<action name="reg" class="com.hanyun.struts.action.RegisterAction"></action>
 	<action name="logout" class="com.hanyun.struts.action.LogoutAction"></action>
+	<action name="personalStatis" class="com.hanyun.struts.action.PersonalStatisAction"></action>
+	<action name="allStatis" class="com.hanyun.struts.action.AllStatisAction"></action>
 
 	<action name="upload" class="com.hanyun.struts.action.UploadAction">
 		<interceptor-ref name="fileUpload"/>

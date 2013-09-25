@@ -17,7 +17,6 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 					"INSERT INTO t_Resource (userId, resourceId, imageId, fileName, fileMD5, fileUrl, uploadTime, downloadTimes, browseTimes, reviewStatusId, fileSize, userRoleId)"
 							+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
 					r.getUserId(),
-					r.getUserRoleId(),
 					r.getResourceId(), 
 					r.getImageId(),
 					r.getFileName(),
@@ -42,6 +41,10 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 	@Override
 	public List<Resource> getAll() throws SQLException {
 		return factory.getAll("SELECT * FROM t_Resource", new Resource());
+	}
+	
+	public List<Resource> getResourcesByUserid(String userId) throws SQLException {
+		return factory.getAll("SELECT * FROM t_Resource WHERE userId = ?", new Resource(), userId);
 	}
 
 

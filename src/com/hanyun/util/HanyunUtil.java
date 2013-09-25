@@ -11,6 +11,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
+import com.hanyun.model.impl.User;
+import com.hanyun.util.dbfactory.ConnectionPoolFactory;
+
 /**
  * 汉云 工具类
  * @author IntSilence 2013-9-18 21:28:14
@@ -19,7 +22,7 @@ import java.util.Random;
  */
 public class HanyunUtil {
 	private static HanyunUtil instance = new HanyunUtil();
-	
+	private ConnectionPoolFactory db = ConnectionPoolFactory.getInstatnce();
 	private HanyunUtil() {}
 	
 	// 单件模式
@@ -32,7 +35,7 @@ public class HanyunUtil {
 	 * @param in byteArray data
 	 * @return Hex string
 	 */
-	public static String byteToHex(byte[] in) {
+	public String byteToHex(byte[] in) {
 		StringBuffer buf = new StringBuffer();
 		for (int offset = 0; offset < in.length; offset++) {
 			int i;
@@ -73,7 +76,7 @@ public class HanyunUtil {
 	 * @param data A file
 	 * @return String Hex string
 	 */
-	public static String MD5(File data) {
+	public String MD5(File data) {
 		String result = null;
 		
 		try {
@@ -115,13 +118,19 @@ public class HanyunUtil {
 		return buf.toString();
 	}
 	
+//	public boolean validateUsername(String username) {
+//		db.get("SELECT * FROM t_User WHERE userName = ?",new User(), username);
+//		
+//		return true;
+//	}
+	
 	// test
 	public static void main(String...args) {
 		System.out.println(instance.MD5("intsilence"));
 		System.out.println(instance.getSalt());
 		System.out.println(instance.MD5(instance.MD5("intsilence") + instance.getSalt()));
 		
-		File testFile = new File("/home/ezio/test_fs");
-		System.out.println(MD5(testFile));
+		File testFile = new File("c:/a.txt");
+		System.out.println(instance.MD5(testFile));
 	}
 }

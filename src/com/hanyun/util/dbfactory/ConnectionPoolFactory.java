@@ -71,7 +71,13 @@ public class ConnectionPoolFactory {
 			}
 		}
 	}
-
+	
+	/**
+	 * insert? update?
+	 * @param sql
+	 * @param objects
+	 * @return
+	 */
 	public boolean execute(String sql, Object... objects) {
 		boolean result = false;
 		PreparedStatement pstmt = null;
@@ -110,6 +116,12 @@ public class ConnectionPoolFactory {
 		return result;
 	}
 	
+	/**
+	 * 查所有的model
+	 * @param sql
+	 * @param rowMapper
+	 * @return
+	 */
 	public <T> List<T> getAll(String sql, IRowMaper<T> rowMapper) {		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -147,6 +159,59 @@ public class ConnectionPoolFactory {
 		return list;
 	}
 	
+	/**
+	 * 按条件查多个model
+	 * @param sql
+	 * @param rowMapper
+	 * @param objects
+	 * @return
+	 */
+	// TODO 代码有重复，怎么优化
+	public <T> List<T> getAll(String sql, IRowMaper<T> rowMapper, Object...objects) {		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<T> list = new ArrayList<T>();
+		int index = 0;
+		try {
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+			setValues(pstmt, objects);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rowMapper.mapRow(rs, index));
+				index++;
+			}			
+		} catch (SQLException e) {
+			// 出错则撤销本次事物
+			System.err.println("HANYUN ERROR: SQL COMMIT FAILURE!");
+			try {
+				conn.rollback();
+			} catch (SQLException e2) {
+				System.err.println("HANYUN ERROR: SQL ROLLBACK FAILURE!");
+				e2.printStackTrace();
+			}			
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e2) {
+				System.err.println("HANYUN ERROR: pstmt OR conn CLOSE FAILURE!");
+				e2.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * 查一个model
+	 * @param sql
+	 * @param iRowMaper
+	 * @param objects
+	 * @return
+	 */
 	public <T> T get(String sql, IRowMaper<T> iRowMaper, Object...objects) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -180,7 +245,7 @@ public class ConnectionPoolFactory {
 			}			
 		}
 		return t;
-	}
+	}	
 	
 	/**
 	 * 查整形数据

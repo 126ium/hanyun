@@ -64,6 +64,7 @@ public class Resource implements IRowMaper<Resource> {
 		res.setReviewStatusId(rs.getInt("reviewStatusId"));
 		res.setFileSize(rs.getInt("fileSize"));
 		res.setUserRoleId(rs.getInt("userRoleId"));
+				
 		return res;
 	}
 		
@@ -151,4 +152,7 @@ public class Resource implements IRowMaper<Resource> {
 	public void setUserRoleId(int userRoleId) {
 		this.userRoleId = userRoleId;
 	}
+
+	
+
 }

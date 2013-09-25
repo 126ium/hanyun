@@ -1,4 +1,4 @@
-#------DB PROPERTIES----------------
+#---------DB PROPERTIES----------------
 driver = com.mysql.jdbc.Driver
 url = jdbc:mysql://127.0.0.1:3306/hanyun?useUnicode=true&characterEncoding=UTF-8
 username = root
@@ -9,7 +9,8 @@ timeout = 100
 leaseTime = 60000
 logFile = DDConnectionBroker.log
 
-#------FILE STORAGE PROPERTIES----------------
-baseDir=/home/ezio/code/temp/hanyun_file
+#--------FILE STORAGE PROPERTIES-------
+baseDir = C:/TEMPFILE
 
-#--------OTHER-------------------
+#--------------GLOBAL------------------
+webRoot = http://192.168.102.253:8080/hanyun/

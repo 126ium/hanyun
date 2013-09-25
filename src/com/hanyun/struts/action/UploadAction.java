@@ -5,7 +5,7 @@ import java.io.*;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
-import com.hanyun.model.User;
+import com.hanyun.model.impl.User;
 import com.hanyun.service.IResourceService;
 import com.hanyun.service.IUserService;
 import com.hanyun.service.impl.ResourceServiceImpl;
@@ -71,6 +71,7 @@ public class UploadAction extends ActionSupport {
 	}
 	
 	public String execute() {
+		System.out.println("action exe");
 		User user = null;
 		
 		user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
@@ -92,8 +93,8 @@ public class UploadAction extends ActionSupport {
 		}
 		
 		try {
-			if (!resourceService.saveToDb(getFileUpload(), getFilenameInput(), /*user.getUserId()*/1000, getPermission()))
-				return INPUT;
+			resourceService.saveToDb(getFileUpload(), getFilenameInput(), user.getUserId(), getPermission());
+//				return INPUT;
 		} catch (Exception e) {
 			LogUtil.log("WARNING", e.toString());
 			e.printStackTrace();

@@ -3,18 +3,20 @@ package com.hanyun.service.impl;
 import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import com.hanyun.service.IResourceService;
 import com.hanyun.util.HanyunUtil;
 import com.hanyun.util.LogUtil;
-import com.hanyun.util.dbfactory.ConnectionBroker;
 import com.hanyun.dao.ResourceDAOImpl;
-import com.hanyun.model.Resource;
+import com.hanyun.model.impl.Resource;
 
 public class ResourceServiceImpl implements IResourceService {
 	private ResourceDAOImpl resourceDAO = new ResourceDAOImpl();
+	private HanyunUtil util = HanyunUtil.getInstance();
 	
 	public boolean saveFile(File src) throws Exception {
 		String basePath = null;
@@ -23,7 +25,7 @@ public class ResourceServiceImpl implements IResourceService {
 		
 		Properties prop = new Properties();
 		try {
-			prop.load(ConnectionBroker.class.getClassLoader().getResourceAsStream("hanyun.property"));
+			prop.load(ResourceServiceImpl.class.getClassLoader().getResourceAsStream("hanyun.property"));
 		} catch (IOException e) {
 			LogUtil.log("WARN", "ERROR to read properties file");
 			e.printStackTrace();
@@ -32,7 +34,7 @@ public class ResourceServiceImpl implements IResourceService {
 		
 		subPath = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		
-		fileMD5 = HanyunUtil.MD5(src);
+		fileMD5 = util.MD5(src);
 		
 		try {
 			InputStream in = null;
@@ -47,9 +49,11 @@ public class ResourceServiceImpl implements IResourceService {
 			File dst = new File(basePath + "/" + subPath + "/" + fileMD5);
 			LogUtil.log("INFO", "Dst file is OK");
 			
-			if (dst.exists())
-				return false;
-			else 
+//			if (dst.exists())
+//				return false;
+//			else 
+//				dst.createNewFile();
+			if (!dst.exists())
 				dst.createNewFile();
 			
 			try {
@@ -104,25 +108,86 @@ public class ResourceServiceImpl implements IResourceService {
 			in.close();
 		}
 		
-		if (permission == "public")
+		if (permission.equalsIgnoreCase("public"))
 			userRoleId = 3;
-		else if (permission == "protected")
+		else if (permission.equalsIgnoreCase("protected"))
 			userRoleId = 2;
 		else
 			userRoleId = 1;
 		
+		
+		Properties prop = new Properties();
+		try {
+			prop.load(ResourceServiceImpl.class.getClassLoader().getResourceAsStream("hanyun.property"));
+		} catch (IOException e) {
+			LogUtil.log("WARN", "ERROR to read properties file");
+			e.printStackTrace();
+		}	
+		String basePath = prop.getProperty("baseDir");		
+		String subPath = new SimpleDateFormat("yyyy-MM-dd").format(new Date());		
+		String fileMD5 = util.MD5(src);
+		
 		resource.setFileName(filename);
 		resource.setUserId(userId);
-		resource.setFileMD5(HanyunUtil.MD5(src));
+		// TODO md5只用算一次
+		resource.setFileMD5(fileMD5);
 		resource.setUploadTime(new Date());
 		resource.setDownloadTimes(0);
 		resource.setBrowseTimes(0);
 		resource.setReviewStatusId(1);
 		resource.setFileSize(fileSize);
 		resource.setUserRoleId(userRoleId);
+		// TODO image id
 		resource.setImageId(10000);
-		resource.setResourceId(1);
-		resource.setFileUrl("\\home\\ezio");
+		
+		// TODO 类别应该查数据库		
+		String fileExt = filename.substring(filename.lastIndexOf('.'), filename.length());
+		if (fileExt.equalsIgnoreCase(".doc") ||
+				fileExt.equalsIgnoreCase(".docx") ||
+				fileExt.equalsIgnoreCase(".pdf") ||
+				fileExt.equalsIgnoreCase(".txt") ||
+				fileExt.equalsIgnoreCase(".xls") ||
+				fileExt.equalsIgnoreCase(".xlsx") ||
+				fileExt.equalsIgnoreCase(".ppt") ||
+				fileExt.equalsIgnoreCase(".pptx") ||
+				fileExt.equalsIgnoreCase(".txt") ||
+				fileExt.equalsIgnoreCase(".html") ||
+				fileExt.equalsIgnoreCase(".zip") ||
+				fileExt.equalsIgnoreCase(".rar") ||
+				fileExt.equalsIgnoreCase(".7z") ||
+				fileExt.equalsIgnoreCase(".iso") ||
+				fileExt.equalsIgnoreCase(".img")) {
+			resource.setResourceId(1);
+		} else if (fileExt.equalsIgnoreCase(".jpg") ||
+				fileExt.equalsIgnoreCase(".jpeg") ||
+				fileExt.equalsIgnoreCase(".png") ||
+				fileExt.equalsIgnoreCase(".tif") ||
+				fileExt.equalsIgnoreCase(".bmp") ||
+				fileExt.equalsIgnoreCase(".gif")) {
+			resource.setResourceId(2);
+		} else if (fileExt.equalsIgnoreCase(".rmvb") ||
+				fileExt.equalsIgnoreCase(".mp4") ||
+				fileExt.equalsIgnoreCase(".avi") ||
+				fileExt.equalsIgnoreCase(".m4v") ||
+				fileExt.equalsIgnoreCase(".flv") ||
+				fileExt.equalsIgnoreCase(".mkv") ||
+				fileExt.equalsIgnoreCase(".mov")) {
+			resource.setResourceId(3);
+		} else if (fileExt.equalsIgnoreCase(".mp3") ||
+				fileExt.equalsIgnoreCase(".mp2") ||
+				fileExt.equalsIgnoreCase(".ape") ||
+				fileExt.equalsIgnoreCase(".cue") ||
+				fileExt.equalsIgnoreCase(".flac") ||
+				fileExt.equalsIgnoreCase(".wav") ||
+				fileExt.equalsIgnoreCase(".wma") ||
+				fileExt.equalsIgnoreCase(".rm")) {
+			resource.setResourceId(4);
+		}
+		
+		if (resource.getResourceId() == 0)
+			resource.setResourceId(999);
+		// TODO 名字只用算一次
+		resource.setFileUrl(basePath + '/' + subPath + '/' + fileMD5);
 		
 		LogUtil.log("INFO", "Object Resource set currently");
 		
@@ -135,5 +200,17 @@ public class ResourceServiceImpl implements IResourceService {
 		}
 		
 		return true;
+	}
+	
+	public List<Resource> getResourcesByUserid(String id) throws SQLException {
+		return resourceDAO.getResourcesByUserid(id);
+	}
+	
+	public static void main(String...args) throws SQLException {
+		ResourceServiceImpl s = new ResourceServiceImpl();
+		List<Resource> list = new ArrayList<Resource>();
+		list = s.getResourcesByUserid("1004");
+		
+		System.out.println("");
 	}
 }

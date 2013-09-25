@@ -206,6 +206,10 @@ public class ResourceServiceImpl implements IResourceService {
 		return resourceDAO.getResourcesByUserid(id);
 	}
 	
+	public int getPersonalResCount(int userId, int resourceId) throws Exception {
+		return resourceDAO.getPersonalResCount(userId, resourceId);
+	}
+	
 	public static void main(String...args) throws SQLException {
 		ResourceServiceImpl s = new ResourceServiceImpl();
 		List<Resource> list = new ArrayList<Resource>();

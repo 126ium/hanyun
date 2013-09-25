@@ -78,4 +78,11 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 		return null;
 	}
 
+	public int getPersonalResCount(int userId, int resourceId) throws SQLException {
+		return (factory.getInt("SELECT COUNT(*) FROM t_Resource WHERE userId = ? AND resourceId = ?", userId, resourceId));
+	}
+	
+	public int getAllResCount(int resourceId) throws SQLException {
+		return (factory.getInt("SELECT COUNT(*) FROM t_Resource WHERE resourceId = ?", resourceId));
+	}
 }

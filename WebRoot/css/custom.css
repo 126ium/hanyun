@@ -108,3 +108,19 @@ aside section img {
 #personalTabContent {
 	margin-top: 2.2em;
 }
+
+.label-pic {
+	background-color: #66CCFF;
+}
+
+.label-music {
+	background-color: #E4F6FF;
+}
+
+.label-doc {
+	background-color: #BEEAFF;
+}
+
+.label-video {
+	background-color: #4698C1;
+}

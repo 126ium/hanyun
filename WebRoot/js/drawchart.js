@@ -6,6 +6,8 @@ function drawChart() {
 		var aMusicCount = data.musicCount;
 		var aVideoCount = data.videoCount;
 		
+		var sum = aDocCount + aPicCount + aMusicCount + aVideoCount;
+		
 		var barChartData = {
 				labels : ["Picture", "Music", "Document", "Video"],
 				datasets : [
@@ -50,6 +52,8 @@ function drawChart() {
 		
 		showDouChart();
 		showBarChart();
+		
+		$("#uploaded").text("Uploaded: " + sum);
 	};
 };
 

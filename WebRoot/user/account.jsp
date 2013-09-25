@@ -21,7 +21,7 @@
 						<section>
 							<h1><img alt="username" class="avatar img-rounded" src="avatar/default_avatar.jpg">User</h1>
 						</section>
-						<h2>Uploaded: 9</h2>
+						<h2 id="uploaded"></h2>
 					</aside>
 					<ul id="personalTab" class="nav nav-pills nav-stacked">
 						<li class="active" id="statis"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>

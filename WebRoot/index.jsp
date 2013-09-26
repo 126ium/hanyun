@@ -43,10 +43,62 @@
 							</ul>
 							<div id="videoTabContent" class="tab-content">
 								<div class="tab-pane fade active in" id="videoHot">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>AAA</td>
+												<td>6.3M</td>
+												<td>6</td>
+												<td>8</td>
+												<td>2020-2-20</td>
+											</tr>
+											<tr>
+												<td>BB</td>
+												<td>4.3M</td>
+												<td>7</td>
+												<td>3</td>
+												<td>2020-2-20</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="videoNew">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>CCC</td>
+												<td>6M</td>
+												<td>9</td>
+												<td>0</td>
+												<td>2020-2-20</td>
+											</tr>
+											<tr>
+												<td>DDD</td>
+												<td>2M</td>
+												<td>7</td>
+												<td>1</td>
+												<td>2020-2-20</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="videoRandom">
 									<p>TODO</p>

@@ -81,7 +81,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade active in" id="review">
+					<div class="tab-pane fade" id="review">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Resource Review</h3>

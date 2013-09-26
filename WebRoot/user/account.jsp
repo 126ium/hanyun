@@ -38,6 +38,7 @@
 						<li><a href="#settings" data-toggle="tab">Account settings</a></li>
 						<li><a href="#resource" data-toggle="tab">Resource management</a></li>
 						<li><a href="#review" data-toggle="tab">Resource review</a></li>
+						<li><a href="#usermanage" data-toggle="tab">User management</a></li>
 					</ul>
 				</div>
 				<div id="personalTabContent" class="col-lg-9 tab-content">
@@ -88,6 +89,16 @@
 							</div>
 							<div class="panel-body">
 								<%@ include file="resreview.jsp" %>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="usermanage">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+						    	<h3 class="panel-title">User Management</h3>
+							</div>
+							<div class="panel-body">
+								<%@ include file="usermanage.jsp" %>
 							</div>
 						</div>
 					</div>

@@ -8,7 +8,7 @@ function submitChange() {
 	var oldPasswd = $("#passwdOld").val();
 	var newPasswd = $("#passwdNew").val();
 	
-	$.post("userSetPsswd", 
+	$.post("setpassword.action", 
 			{
 				oldPassword: oldPasswd,
 				newPassword: newPasswd
@@ -18,8 +18,8 @@ function submitChange() {
 	);
 
 	function displayErr(data) {
-		if (data.msg != null) {
-			$("#errMsg").text(data.msg);
+		if (data != null) {
+			$("#errMsg").text(data);
 			$("#alertDiv").attr("style", "display: block;");
 		} else {
 			$("#alertDiv").attr("style", "display: none;");

@@ -2,8 +2,11 @@
     pageEncoding="UTF-8"%>
 <div class="container">
 	<form role="form" action="#" method="POST">
-		<div class="alert alert-danger" id="alertDiv" style="display: block;">
-			<p id="errMsg">Warning message.</p>
+		<div class="alert alert-danger" id="alertDiv" style="display: none;">
+			<p id="errMsg"></p>
+		</div>
+		<div class="alert alert-success" id="successDiv" style="display: none;">
+			<p id="successMsg"></p>
 		</div>
 		<div class="form-group">
 			<label for="passwdOld">Old Password</label>
@@ -18,13 +21,7 @@
 			<input type="password" class="form-control" id="passwdConfirm" placeholder="Confirm password" name="passwdConfirm">
 		</div>
 		<div class="modal-footer">
-			<button id="saveInfoButton"type="submit" class="btn btn-primary">Save</button>
+			<button type="button" class="btn btn-primary" id="setSave">Save</button>
 		</div>
 	</form>
 </div>
-<script type="text/javascript">
-	$("#saveInfoButton").click(function() {
-		
-		
-		});
-</script>

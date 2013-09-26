@@ -45,7 +45,9 @@
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Resource Statistics</h3>
 							</div>
-							<div class="panel-body">TODO</div>
+							<div class="panel-body">
+								<%@ include file="restatistics.jsp" %>
+							</div>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="profile">

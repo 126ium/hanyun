@@ -8,7 +8,13 @@
   		<div class="media-body">
     		<h4 class="media-heading">User</h4>
     		<p>
-    			<button class="btn btn-danger" data-toggle="modal" data-target="#userDeleteModal" style="width: 50px; height: 30px; font-size: 13px; padding: 6px 3px;">
+    			<button class="btn btn-primary" style="width: 90px; height: 30px; font-size: 13px; padding: 6px 3px;">
+					Set as User
+				</button>
+    			<button class="btn btn-warning" style="width: 90px; height: 30px; font-size: 13px; padding: 6px 3px;">
+					Set as Admin
+				</button>
+    			<button class="btn btn-danger" data-toggle="modal" data-target="#userDeleteModal" style="width: 90px; height: 30px; font-size: 13px; padding: 6px 3px;">
 					Delete
 				</button>
 			</p>
@@ -21,7 +27,13 @@
   		<div class="media-body">
     		<h4 class="media-heading">CCAPP</h4>
     		<p>
-    			<button class="btn btn-danger" data-toggle="modal" data-target="#userDeleteModal" style="width: 50px; height: 30px; font-size: 13px; padding: 6px 3px;">
+    			<button class="btn btn-primary" style="width: 90px; height: 30px; font-size: 13px; padding: 6px 3px;">
+					Set as User
+				</button>
+    			<button class="btn btn-warning" style="width: 90px; height: 30px; font-size: 13px; padding: 6px 3px;">
+					Set as Admin
+				</button>
+    			<button class="btn btn-danger" data-toggle="modal" data-target="#userDeleteModal" style="width: 90px; height: 30px; font-size: 13px; padding: 6px 3px;">
 					Delete
 				</button>
 			</p>

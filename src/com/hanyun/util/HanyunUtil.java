@@ -9,9 +9,12 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
+import java.util.Properties;
 import java.util.Random;
 
 import com.hanyun.model.impl.User;
+import com.hanyun.service.impl.ResourceServiceImpl;
 import com.hanyun.util.dbfactory.ConnectionPoolFactory;
 
 /**
@@ -116,6 +119,41 @@ public class HanyunUtil {
 		}
 		
 		return buf.toString();
+	}
+	
+    public static final float ONE_KB = 1024;
+    public static final float ONE_MB = ONE_KB * ONE_KB;
+    public static final float ONE_GB = ONE_KB * ONE_MB;
+    public static final float ONE_TB = ONE_KB * ONE_GB;
+
+	public String byteCountToDisplaySize(int size) {
+		String displaySize;
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		if (size / ONE_TB > 1) {
+			displaySize = df.format(size / ONE_TB) + " TB";
+		} else if (size / ONE_GB > 1) {
+			displaySize = df.format(size / ONE_GB) + " GB";
+		} else if (size / ONE_MB > 1) {
+			displaySize = df.format(size / ONE_MB) + " MB";
+		} else if (size / ONE_KB > 1) {
+			displaySize = df.format(size / ONE_KB) + " KB";
+		} else {
+			displaySize = String.valueOf(size) + " bytes";
+		}
+		
+		return displaySize;
+	}
+	
+	public String getHanyunConfig(String key) {
+		Properties prop = new Properties();
+		try {
+			prop.load(HanyunUtil.class.getClassLoader().getResourceAsStream("hanyun.property"));
+		} catch (IOException e) {
+			LogUtil.log("WARN", "ERROR to read properties file");
+			e.printStackTrace();
+		}	
+		return prop.getProperty(key);
 	}
 	
 //	public boolean validateUsername(String username) {

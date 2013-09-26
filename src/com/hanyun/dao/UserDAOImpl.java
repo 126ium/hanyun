@@ -79,8 +79,20 @@ public class UserDAOImpl extends AbstractHanyunDAO<User> {
 	}
 	
 	@Override
-	public void update() throws SQLException {
-		// TODO Auto-generated method stub
+	public void update(User u) {
+		factory.execute("UPDATE t_User SET userName=?, userPassword=?, salt=?, userRoleId=?, userEmail=?," +
+				" lastLoginIP=?, lastLoginTime=?, avatarUrl=?, registerIP=?, registerTime=? WHERE userId=?",
+				u.getUserName(),
+				u.getPassword(),
+				u.getSalt(),
+				u.getRole(),
+				u.getEmail(),
+				u.getLastLoginIP(),
+				u.getLastLoginTime(),
+				u.getAvatarUrl(),
+				u.getRegisterIP(),
+				u.getRegisterTime(),
+				u.getUserId());
 		
 	}
 	

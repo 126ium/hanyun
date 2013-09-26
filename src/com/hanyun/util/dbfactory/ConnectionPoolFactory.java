@@ -325,10 +325,9 @@ public class ConnectionPoolFactory {
 		Connection conn = null;
 		try {
 			conn = factory.getConnection();
-			boolean ret = factory.execute(
-					"INSERT INTO t_user VALUES(?,?,?,?,?,?,?,?,?,?)", 5,
-					"name", "pwd", "salt", 1, "haode@baidu.com", "xxx",
-					new Date(), 1, "3.jpg");
+			int userId = 1000;
+			int resourceId = 1;
+			int ret = factory.getInt("SELECT COUNT(*) FROM t_Resource WHERE userId = ? AND resourceId = ?", userId, resourceId);
 			System.out.println(ret);
 
 			System.out.println(factory.getNumbersConnection());

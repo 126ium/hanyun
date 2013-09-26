@@ -44,9 +44,9 @@ public abstract class AbstractHanyunDAO<T> {
 	public abstract T get(String name) throws SQLException;
 	
 	/**
-	 * 改
+	 * 改，更新信息
 	 * @throws Exception
 	 */
-	public abstract void update() throws SQLException; 
+	public abstract void update(T model) throws SQLException; 
 	
 }

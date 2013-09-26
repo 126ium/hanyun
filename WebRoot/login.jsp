@@ -122,7 +122,7 @@
 						//alert("提交！");
 						var data = eval('(' + data + ')'); 
 						if (data.msg == null){
-							window.location="index.jsp";
+							window.location="login.jsp";
 						} else {
 							$("#alertDiv").attr("style", "display: block;");
 							$("#errMsg").html(data.msg);						

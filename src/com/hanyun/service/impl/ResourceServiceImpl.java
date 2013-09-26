@@ -18,19 +18,16 @@ public class ResourceServiceImpl implements IResourceService {
 	private ResourceDAOImpl resourceDAO = new ResourceDAOImpl();
 	private HanyunUtil util = HanyunUtil.getInstance();
 	
+	public String getBasePath() {
+
+		return util.getHanyunConfig("baseDir");
+	}
+	
+	
 	public boolean saveFile(File src) throws Exception {
-		String basePath = null;
+		String basePath = getBasePath();
 		String subPath = null;
 		String fileMD5 = null;
-		
-		Properties prop = new Properties();
-		try {
-			prop.load(ResourceServiceImpl.class.getClassLoader().getResourceAsStream("hanyun.property"));
-		} catch (IOException e) {
-			LogUtil.log("WARN", "ERROR to read properties file");
-			e.printStackTrace();
-		}	
-		basePath = prop.getProperty("baseDir");
 		
 		subPath = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		
@@ -116,14 +113,7 @@ public class ResourceServiceImpl implements IResourceService {
 			userRoleId = 1;
 		
 		
-		Properties prop = new Properties();
-		try {
-			prop.load(ResourceServiceImpl.class.getClassLoader().getResourceAsStream("hanyun.property"));
-		} catch (IOException e) {
-			LogUtil.log("WARN", "ERROR to read properties file");
-			e.printStackTrace();
-		}	
-		String basePath = prop.getProperty("baseDir");		
+		String basePath = getBasePath();		
 		String subPath = new SimpleDateFormat("yyyy-MM-dd").format(new Date());		
 		String fileMD5 = util.MD5(src);
 		
@@ -202,14 +192,14 @@ public class ResourceServiceImpl implements IResourceService {
 		return true;
 	}
 	
-	public List<Resource> getResourcesByUserid(String id) throws SQLException {
+	public List<Resource> getResourcesByUserid(int id) throws SQLException {
 		return resourceDAO.getResourcesByUserid(id);
 	}
 	
 	public static void main(String...args) throws SQLException {
 		ResourceServiceImpl s = new ResourceServiceImpl();
 		List<Resource> list = new ArrayList<Resource>();
-		list = s.getResourcesByUserid("1004");
+		list = s.getResourcesByUserid(1004);
 		
 		System.out.println("");
 	}

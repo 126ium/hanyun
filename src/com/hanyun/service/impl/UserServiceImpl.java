@@ -27,7 +27,7 @@ public class UserServiceImpl implements IUserService{
 			user.setSalt(salt);
 			user.setPassword(u.MD5(u.MD5(password) + salt));
 			user.setRole(userDAO.getRoleId("普通用户"));
-			user.setAvatarUrl("not set");
+			user.setAvatarUrl("avatar/noavatar.gif");
 			user.setLastLoginTime(new Date());
 			user.setRegisterTime(new Date());
 			userDAO.add(user);
@@ -87,7 +87,10 @@ public class UserServiceImpl implements IUserService{
 			return false;
 		return email.matches("\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b");
 	}
-
+	
+	/**
+	 * 登陆流程判断
+	 */
 	@Override
 	public User login(String userName, String password) {
 		User user = userDAO.get(userName);
@@ -100,11 +103,43 @@ public class UserServiceImpl implements IUserService{
 		else 
 			return null;
 	}
-
+	
+	/**
+	 * 验证用户密码
+	 * @param user
+	 * @param password
+	 * @return
+	 */
+	public boolean confirmPassword(User user, String password) {
+		String salt = user.getSalt();
+		password = u.MD5(u.MD5(password) + salt);
+		if (password.equalsIgnoreCase(user.getPassword()))
+			return true;
+		else 
+			return false;
+	}
+	
+	/**
+	 * 设置用户的新密码
+	 * @param user
+	 * @param password
+	 */
+	public void setNewPassword(User user, String password) {
+		String salt = u.getSalt();
+		user.setSalt(salt);
+		password = u.MD5(u.MD5(password) + salt);
+		user.setPassword(password);
+		userDAO.update(user);
+	
+	}
+	
+	/**
+	 * 更新用户信息
+	 */
 	@Override
-	public void updateUserInfo(User... users) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void updateUserInfo(User... users) {
+		for (User user : users)
+			userDAO.update(user);
 	}
 	
 	

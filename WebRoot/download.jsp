@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="com.hanyun.dao.*,com.hanyun.model.impl.*,java.text.SimpleDateFormat"%>
+    
+<%
+	String fileId = request.getParameter("id");
+	AbstractHanyunDAO resDao = new ResourceDAOImpl();
+	AbstractHanyunDAO userDao = new UserDAOImpl();
+	Resource res = (Resource) resDao.get(Integer.parseInt(fileId));
+	
+	if (res == null) {
+	
+%>
+	sorry, we can not find the resource you requested.
+<%
+	} else {
+	res.setBrowseTimes(res.getBrowseTimes() + 1);
+	resDao.update(res);
+	User uploadUser = (User) userDao.get(res.getUserId());
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -23,20 +41,20 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
     						<div class="container">
-    							<h1>File Name</h1>
+    							<h1><%=res.getFileName() %></h1>
     							<div class="center">				
 									<a href="#" class="thumbnail">
       									<img data-src="holder.js/100%x180" alt="file" src="images/0001.jpg" style="max-width: 100%; height: auto; display: block;">
       								</a>
-      								<h5>Size: 1KB</h5>
-      								<h5>Upload Date: 2020-2-20</h5>
+      								<h5>Size: <%=res.getFileSizeDescription() %></h5>
+      								<h5>Upload Date: <%=new SimpleDateFormat("yyyy-MM-dd").format(res.getUploadTime()) %></h5>
     							</div>
     							<footer>
-    								<button class="btn btn-primary btn-lg" type="submit">
+    								<button id="downButton" class="btn btn-primary btn-lg">
 										Download
 									</button>
-									<p style="float: right; margin-left: 10px">Download Times:3</p>
-									<p style="float: right;">Browse Times:4</p>
+									<p style="float: right; margin-left: 10px">Download Times:<%=res.getDownloadTimes() %></p>
+									<p style="float: right;">Browse Times:<%=res.getBrowseTimes() %></p>
     							</footer>
     						</div>
 						</div>
@@ -49,7 +67,7 @@
     							<h1>Sharer</h1>
     							<aside>
 									<section>
-										<h3><img alt="username" class="avatar img-rounded" src="images/default_avatar.jpg">User</h3>
+										<h3><img alt="<%=uploadUser.getUserName() %>" class="avatar img-rounded" src="<%="user/" + uploadUser.getAvatarUrl() %>"> <%=uploadUser.getUserName() %></h3>
 									</section>
 								</aside>
 								<footer>
@@ -70,5 +88,12 @@
 		</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$("#downButton").click(function() {
+			window.location = "download.action?fileId=<%=res.getFileId() %>";			
+			});
+	</script>	
+
 	</body>
 </html>
+<% }%>

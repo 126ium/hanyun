@@ -1,11 +1,19 @@
+<%@page import="com.hanyun.model.impl.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	User user = (User) request.getSession().getAttribute("user");
+	
+
+ %>    
+ <%String resPageNum = request.getParameter("page"); %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title> Han Yun | Account </title>
+		<title> Han Yun | Account - <%=user.getUserName() %></title>
 		<link href="../css/bootstrap.css" rel="stylesheet">
 		<link href="../css/navbar-fixed-top.css" rel="stylesheet">
 		<link href="../css/custom.css" rel="stylesheet">
@@ -16,12 +24,12 @@
 		<%@ include file="../layouts/_header.jsp"%>
 		<div class="container">
 			<div class="row marketing">
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<aside>
 						<section>
-							<h1><img alt="username" class="avatar img-rounded" src="avatar/default_avatar.jpg">User</h1>
+							<h1><img alt="<%=user.getUserName() + "'s avatar" %>" class="avatar img-rounded" src="<%=user.getAvatarUrl() %>"><%=user.getUserName() %></h1>
 						</section>
-						<h2>Uploaded: 9</h2>
+						<h2>Uploaded: xxx files</h2>
 					</aside>
 					<ul id="personalTab" class="nav nav-pills nav-stacked">
 						<li class="active"><a href="#statistics" data-toggle="tab">Resource statistics</a></li>
@@ -30,15 +38,13 @@
 						<li><a href="#resource" data-toggle="tab">Resource management</a></li>
 					</ul>
 				</div>
-				<div id="personalTabContent" class="col-lg-8 tab-content">
+				<div id="personalTabContent" class="col-lg-9 tab-content">
 					<div class="tab-pane fade active in" id="statistics">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 						    	<h3 class="panel-title">Resource Statistics</h3>
 							</div>
-							<div class="panel-body">
-								<%@ include file="restatistics.jsp" %>
-							</div>
+							<div class="panel-body">TODO</div>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="profile">

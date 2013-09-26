@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.hanyun.dao.ResourceDAOImpl,java.util.*,com.hanyun.model.impl.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,7 +21,7 @@
 			<div class="center hero-unit">
 				<h1>Welcome to Han Yun</h1>
 				<h2>A convenient multimedia share platform</h2>
-				<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up Now!</a></p>
+				<p><a class="btn btn-lg btn-primary" href="login.jsp#toregister" role="button">Sign up Now!</a></p>
 			</div>
 		</div>
 		<div class="container">
@@ -54,20 +56,21 @@
 											</tr>
 										</thead>
 										<tbody>
+										<%
+											ResourceDAOImpl resDAO = new ResourceDAOImpl();
+											List<Resource> hotVideoList = resDAO.getResourcesByCategory(3, "hot", 3);	
+											for (int i = 0; i < hotVideoList.size(); i ++) {									
+										 %>
 											<tr>
-												<td>AAA</td>
-												<td>6.3M</td>
-												<td>6</td>
-												<td>8</td>
-												<td>2020-2-20</td>
+												<td><a href="download.jsp?id=<%=hotVideoList.get(i).getFileId() %>"><%=hotVideoList.get(i).getFileName() %></a></td>
+												<td><%=hotVideoList.get(i).getFileSizeDescription() %></td>
+												<td><%=hotVideoList.get(i).getDownloadTimes() %></td>
+												<td><%=hotVideoList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(hotVideoList.get(i).getUploadTime()) %></td>
 											</tr>
-											<tr>
-												<td>BB</td>
-												<td>4.3M</td>
-												<td>7</td>
-												<td>3</td>
-												<td>2020-2-20</td>
-											</tr>
+										<%
+											}
+										 %>											
 										</tbody>
 									</table>
 								</div>
@@ -83,25 +86,51 @@
 											</tr>
 										</thead>
 										<tbody>
+										<%
+											List<Resource> newVideoList = resDAO.getResourcesByCategory(3, "new", 3);	
+											for (int i = 0; i < newVideoList.size(); i ++) {									
+										 %>
 											<tr>
-												<td>CCC</td>
-												<td>6M</td>
-												<td>9</td>
-												<td>0</td>
-												<td>2020-2-20</td>
+												<td><a href="download.jsp?id=<%=newVideoList.get(i).getFileId() %>"><%=newVideoList.get(i).getFileName() %></a></td>
+												<td><%=newVideoList.get(i).getFileSizeDescription() %></td>
+												<td><%=newVideoList.get(i).getDownloadTimes() %></td>
+												<td><%=newVideoList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(newVideoList.get(i).getUploadTime()) %></td>
 											</tr>
-											<tr>
-												<td>DDD</td>
-												<td>2M</td>
-												<td>7</td>
-												<td>1</td>
-												<td>2020-2-20</td>
-											</tr>
+										<%
+											}
+										 %>											
 										</tbody>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="videoRandom">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> randomVideoList = resDAO.getResourcesByCategory(3, "random", 3);	
+											for (int i = 0; i < randomVideoList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=randomVideoList.get(i).getFileId() %>"><%=randomVideoList.get(i).getFileName() %></a></td>
+												<td><%=randomVideoList.get(i).getFileSizeDescription() %></td>
+												<td><%=randomVideoList.get(i).getDownloadTimes() %></td>
+												<td><%=randomVideoList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(randomVideoList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -124,13 +153,91 @@
 							</ul>
 							<div id="picTabContent" class="tab-content">
 								<div class="tab-pane fade active in" id="picHot">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> hotPicList = resDAO.getResourcesByCategory(2, "hot", 3);	
+											for (int i = 0; i < hotPicList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=hotPicList.get(i).getFileId() %>"><%=hotPicList.get(i).getFileName() %></a></td>
+												<td><%=hotPicList.get(i).getFileSizeDescription() %></td>
+												<td><%=hotPicList.get(i).getDownloadTimes() %></td>
+												<td><%=hotPicList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(hotPicList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="picNew">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> newPicList = resDAO.getResourcesByCategory(2, "new", 3);	
+											for (int i = 0; i < newPicList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=newPicList.get(i).getFileId() %>"><%=newPicList.get(i).getFileName() %></a></td>
+												<td><%=newPicList.get(i).getFileSizeDescription() %></td>
+												<td><%=newPicList.get(i).getDownloadTimes() %></td>
+												<td><%=newPicList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(newPicList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="picRandom">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> randomPicList = resDAO.getResourcesByCategory(2, "random", 3);	
+											for (int i = 0; i < randomPicList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=randomPicList.get(i).getFileId() %>"><%=randomPicList.get(i).getFileName() %></a></td>
+												<td><%=randomPicList.get(i).getFileSizeDescription() %></td>
+												<td><%=randomPicList.get(i).getDownloadTimes() %></td>
+												<td><%=randomPicList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(randomPicList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -153,13 +260,91 @@
 							</ul>
 							<div id="picTabContent" class="tab-content">
 								<div class="tab-pane fade active in" id="docHot">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> hotDocList = resDAO.getResourcesByCategory(1, "hot", 3);	
+											for (int i = 0; i < hotDocList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=hotDocList.get(i).getFileId() %>"><%=hotDocList.get(i).getFileName() %></a></td>
+												<td><%=hotDocList.get(i).getFileSizeDescription() %></td>
+												<td><%=hotDocList.get(i).getDownloadTimes() %></td>
+												<td><%=hotDocList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(hotDocList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="docNew">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> newDocList = resDAO.getResourcesByCategory(1, "new", 3);	
+											for (int i = 0; i < newDocList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=newDocList.get(i).getFileId() %>"><%=newDocList.get(i).getFileName() %></a></td>
+												<td><%=newDocList.get(i).getFileSizeDescription() %></td>
+												<td><%=newDocList.get(i).getDownloadTimes() %></td>
+												<td><%=newDocList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(newDocList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="docRandom">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> randomDocList = resDAO.getResourcesByCategory(1, "random", 3);	
+											for (int i = 0; i < randomDocList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=randomDocList.get(i).getFileId() %>"><%=randomDocList.get(i).getFileName() %></a></td>
+												<td><%=randomDocList.get(i).getFileSizeDescription() %></td>
+												<td><%=randomDocList.get(i).getDownloadTimes() %></td>
+												<td><%=randomDocList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(randomDocList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -182,13 +367,91 @@
 							</ul>
 							<div id="picTabContent" class="tab-content">
 								<div class="tab-pane fade active in" id="musicHot">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> hotMusicList = resDAO.getResourcesByCategory(4, "hot", 3);	
+											for (int i = 0; i < hotMusicList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=hotMusicList.get(i).getFileId() %>"><%=hotMusicList.get(i).getFileName() %></a></td>
+												<td><%=hotMusicList.get(i).getFileSizeDescription() %></td>
+												<td><%=hotMusicList.get(i).getDownloadTimes() %></td>
+												<td><%=hotMusicList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(hotMusicList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="musicNew">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> newMusicList = resDAO.getResourcesByCategory(4, "new", 3);	
+											for (int i = 0; i < newMusicList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=newMusicList.get(i).getFileId() %>"><%=newMusicList.get(i).getFileName() %></a></td>
+												<td><%=newMusicList.get(i).getFileSizeDescription() %></td>
+												<td><%=newMusicList.get(i).getDownloadTimes() %></td>
+												<td><%=newMusicList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(newMusicList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 								<div class="tab-pane fade" id="musicRandom">
-									<p>TODO</p>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> randomMusicList = resDAO.getResourcesByCategory(4, "random", 3);	
+											for (int i = 0; i < randomMusicList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=randomMusicList.get(i).getFileId() %>"><%=randomMusicList.get(i).getFileName() %></a></td>
+												<td><%=randomMusicList.get(i).getFileSizeDescription() %></td>
+												<td><%=randomMusicList.get(i).getDownloadTimes() %></td>
+												<td><%=randomMusicList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(randomMusicList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -200,7 +463,33 @@
 							<h2 class="panel-title">What's Hot?</h2>
 						</div>
 						<div class="panel-body">
-							content
+							<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> hotResList = resDAO.getHotRes(5);	
+											for (int i = 0; i < hotResList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=hotResList.get(i).getFileId() %>"><%=hotResList.get(i).getFileName() %></a></td>
+												<td><%=hotResList.get(i).getFileSizeDescription() %></td>
+												<td><%=hotResList.get(i).getDownloadTimes() %></td>
+												<td><%=hotResList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(hotResList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 						</div>
 					</div>
 					<div class="panel panel-default">

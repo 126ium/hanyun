@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import com.hanyun.model.IRowMaper;
+import com.hanyun.util.HanyunUtil;
 
 public class Resource implements IRowMaper<Resource> {
 	// 资源文件ID
@@ -58,7 +59,7 @@ public class Resource implements IRowMaper<Resource> {
 		res.setFileName(rs.getString("fileName"));
 		res.setFileMD5(rs.getString("fileMD5"));
 		res.setFileUrl(rs.getString("fileUrl"));
-		res.setUploadTime(rs.getTime("uploadTime"));
+		res.setUploadTime(rs.getTimestamp("uploadTime"));
 		res.setDownloadTimes(rs.getInt("downloadTimes"));
 		res.setBrowseTimes(rs.getInt("browseTimes"));
 		res.setReviewStatusId(rs.getInt("reviewStatusId"));
@@ -136,9 +137,13 @@ public class Resource implements IRowMaper<Resource> {
 	public void setReviewStatusId(int reviewStatusId) {
 		this.reviewStatusId = reviewStatusId;
 	}
-
+	
 	public int getFileSize() {
 		return fileSize;
+	}
+	public String getFileSizeDescription() {
+		HanyunUtil u = HanyunUtil.getInstance();
+		return u.byteCountToDisplaySize(fileSize);
 	}
 
 	public void setFileSize(int fileSize) {

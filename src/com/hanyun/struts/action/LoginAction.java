@@ -1,5 +1,7 @@
 package com.hanyun.struts.action;
 
+import java.util.Date;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.hanyun.model.impl.User;
@@ -18,10 +20,14 @@ public class LoginAction  implements ModelDriven<User> {
 	
 	public String execute() {
 		user = userService.login(user.getUserName(), user.getPassword());
-		if (null != user)
+		if (null != user) {
+			user.setLastLoginIP(ServletActionContext.getRequest().getRemoteAddr());
+			user.setLastLoginTime(new Date());
+			userService.updateUserInfo(user);
 			ServletActionContext.getRequest().getSession().setAttribute("user", user);
-		else
+		} else {
 			msg = "Invalid username or password";
+		}
 		
 		return "json";
 	}

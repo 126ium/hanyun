@@ -12,5 +12,5 @@ public interface IUserService {
 	
 	public User login(String userName, String password);
 	
-	public void updateUserInfo(User...users) throws SQLException;
+	public void updateUserInfo(User...users);
 }

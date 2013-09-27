@@ -494,10 +494,36 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h2 class="panel-title">Who shares most?</h2>
+							<h2 class="panel-title">What's new?</h2>
 						</div>
 						<div class="panel-body">
-							content
+							<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>File Name</th>
+												<th>Size</th>
+												<th>Download Times</th>
+												<th>Browse Times</th>
+												<th>Upload Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										<%
+											List<Resource> newResList = resDAO.getNewRes(8);	
+											for (int i = 0; i < newResList.size(); i ++) {									
+										 %>
+											<tr>
+												<td><a href="download.jsp?id=<%=newResList.get(i).getFileId() %>"><%=newResList.get(i).getFileName() %></a></td>
+												<td><%=newResList.get(i).getFileSizeDescription() %></td>
+												<td><%=newResList.get(i).getDownloadTimes() %></td>
+												<td><%=newResList.get(i).getBrowseTimes() %></td>
+												<td><%=new SimpleDateFormat("yyyy-MM-dd").format(newResList.get(i).getUploadTime()) %></td>
+											</tr>
+										<%
+											}
+										 %>											
+										</tbody>
+									</table>
 						</div>
 					</div>
 				</div>

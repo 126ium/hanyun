@@ -59,7 +59,7 @@ public class User implements IRowMaper<User> {
 		user.setLastLoginTime(rs.getTime("lastLoginTime"));
 		user.setAvatarUrl(rs.getString("avatarUrl"));
 		user.setRegisterIP(rs.getString("registerIP"));
-		user.setRegisterTime(rs.getTime("registerTime"));
+		user.setRegisterTime(rs.getTimestamp("registerTime"));
 
 		return user;
 	}

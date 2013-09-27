@@ -60,7 +60,8 @@ function saveFile() {
 			fuck);
 	
 	function fuck() {
-		alert("fuck");
+		//alert("fuck");
+		window.location.reload(true);
 	}
 	
 }

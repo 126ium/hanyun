@@ -56,6 +56,27 @@ public class ResourceDAOImpl extends AbstractHanyunDAO<Resource> {
 	}
 	
 	/**
+	 * 最新资源
+	 * @param num
+	 * @return
+	 */
+	public List<Resource> getNewRes(int num) {
+		String sql = "SELECT * FROM t_Resource ORDER BY uploadTime DESC";
+		if (num > 0)
+			sql += " LIMIT 0," + String.valueOf(num);
+		
+		return factory.getAll(sql, new Resource());		
+	}
+	
+	public List<Resource> getSearchResult(String key, int num) {
+		String sql = "SELECT * FROM t_Resource WHERE fileName like \"%"
+				+ key + "%\"";
+		if (num > 0)
+			sql += " LIMIT 0," + String.valueOf(num);
+		
+		return factory.getAll(sql, new Resource());
+	}
+	/**
 	 * 获取某用户上传的所有资源
 	 * @param userId
 	 * @return

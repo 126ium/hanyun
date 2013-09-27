@@ -29,7 +29,8 @@
  			
 			for (int i = 0; i < resManageList.size(); i ++ ) {			
 		 %>
-			<tr>
+			<tr id="<%=i %>">
+			
 				<td><a href=<%= path + "download.jsp?id=" + resManageList.get(i).getFileId() %>> <%=resManageList.get(i).getFileName() %> </a></td>
 				<td><%=resManageList.get(i).getFileSizeDescription() %></td>
 				<td><%=resManageList.get(i).getUploadTime() %></td>
@@ -38,7 +39,7 @@
 				<td><%=resManageList.get(i).getDownloadTimes() %></td>
 				<td><%=resManageList.get(i).getBrowseTimes() %></td>
 				<td>
-					<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal">
+					<button id="deleteButton" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal">
 						Delete
 					</button>
 				</td>

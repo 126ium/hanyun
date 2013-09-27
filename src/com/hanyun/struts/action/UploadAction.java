@@ -71,7 +71,7 @@ public class UploadAction extends ActionSupport {
 	}
 	
 	public String execute() {
-		System.out.println("action exe");
+		LogUtil.log("INFO", "action exe");
 		User user = null;
 		
 		user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");

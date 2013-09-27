@@ -4,9 +4,11 @@ import java.io.File;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.hanyun.dao.UserDAOImpl;
 import com.hanyun.model.impl.User;
 import com.hanyun.service.IAvatarService;
 import com.hanyun.service.impl.AvatarSerivceImpl;
+import com.hanyun.util.HanyunUtil;
 import com.hanyun.util.LogUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -15,6 +17,8 @@ public class AvatarUploadAction extends ActionSupport {
 	private String avatarFileContentType;
 	private String avatarFileFileName;
 	private IAvatarService avatarService = new AvatarSerivceImpl();
+	private HanyunUtil util = HanyunUtil.getInstance();
+	private UserDAOImpl userDAOImpl = new UserDAOImpl();
 	
 	public File getAvatarFile() {
 		return avatarFile;
@@ -39,6 +43,8 @@ public class AvatarUploadAction extends ActionSupport {
 		User user = null;
 		
 		user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		user.setAvatarUrl("avatar/" + util.MD5(String.valueOf(user.getUserId())) + ".png");		
+		userDAOImpl.update(user);
 		
 		try {
 			avatarService.saveTmpFile(getAvatarFile(), user.getUserId());

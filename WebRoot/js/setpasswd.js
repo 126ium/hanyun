@@ -18,8 +18,8 @@ function submitChange() {
 	);
 
 	function displayErr(data) {
-		if (data != null) {
-			$("#errMsg").text(data);
+		if (data.msg != null) {
+			$("#errMsg").text(data.msg);
 			$("#alertDiv").attr("style", "display: block;");
 		} else {
 			$("#alertDiv").attr("style", "display: none;");

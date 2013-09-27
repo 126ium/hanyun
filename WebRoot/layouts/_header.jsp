@@ -22,9 +22,9 @@
 			<a class="navbar-brand" href=<%=path + "index.jsp" %>>Han Yun</a>
 		</div>
 		<div class="navbar-collapse collapse">
-			<form class="navbar-form navbar-left" role="search">
+			<form action="search.jsp" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input id="query" type="text" name="s" class="form-control" placeholder="Search">
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
 			</form>
@@ -35,16 +35,19 @@
 			%>
 			 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href=<%=path + "index.jsp" %>>Home</a></li>
-				<li class="active"><a href="<%=path + "user/account.jsp"%>"><%=userHeader.getUserName()%></a></li>
+				<li><a href=<%=path + "index.jsp" %>>HOME</a></li>
+				<li><a href=<%=path + "restatistics.jsp" %>>STAT</a></li>
+				<li class="active"><a href="<%=path + "user/account.jsp"%>"><%=userHeader.getUserName().toUpperCase()%></a></li>
+				<li><a href=<%=path + "logout.jsp" %>>LOGOUT</a></li>				
 			</ul>
+
 			<%
 				} else {
 			 %>
 			 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href=<%=path + "index.jsp" %>>Home</a></li>
-				<li class="active"><a href=<%=path + "login.jsp" %>>Sign in/up</a></li>
+				<li><a href=<%=path + "index.jsp" %>>HOME</a></li>
+				<li class="active"><a href=<%=path + "login.jsp" %>>LOGIN/SIGNUP</a></li>
 			</ul>
 			<%
 				}

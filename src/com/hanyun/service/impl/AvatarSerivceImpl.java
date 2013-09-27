@@ -84,6 +84,7 @@ public class AvatarSerivceImpl implements IAvatarService {
 		srcpath += "/" + userMD5 + ".png.tmp";
 		dstpath += "/" + userMD5 + ".png";
 		
+//		User user = ServletActionContext.getActionContext().get
 	    FileInputStream is = null;
 	    ImageInputStream iis = null;
 	    try {

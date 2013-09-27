@@ -1,3 +1,4 @@
+<%@page import="com.hanyun.dao.ResourceDAOImpl,java.util.*, com.hanyun.model.impl.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,24 +20,26 @@
 		<div class="container">
 			<div class="hero-unit">
 				<h3>Search Result</h3>
+				<%
+					String searchKey = request.getParameter("s");
+					ResourceDAOImpl resDao = new ResourceDAOImpl();
+					List<Resource> resultList = resDao.getSearchResult(searchKey, 10);
+					
+					//System.out.println(resultList);
+					for (int i = 0; i < resultList.size(); i ++) {
+				 %>
 				<div class="media">
   					<a class="pull-left" href="#">
-    					<img style="width: 64px; height: 64px;" class="media-object" src="images/default_avatar.jpg" alt="">
+    					<img style="width: 64px; height: 64px;" class="media-object" src="images/<%=resultList.get(i).getImageId() %>.jpg" alt="">
   					</a>
   					<div class="media-body">
-    					<h4 class="media-heading">Mother Fucker!!!Ass Hole!!!</h4>
-    					<p>slkdlkjsadlk</p>
+    					<h4 class="media-heading"><%=resultList.get(i).getFileName() %></h4>
+    					<p>Size:<%=resultList.get(i).getFileSizeDescription() %>  Upload Time: Upload By:</p>
   					</div>
 				</div>
-				<div class="media">
-  					<a class="pull-left" href="#">
-    					<img style="width: 64px; height: 64px;" class="media-object" src="images/default_avatar.jpg" alt="">
-  					</a>
-  					<div class="media-body">
-    					<h4 class="media-heading">SHIT!!!!</h4>
-    					<p>slkdlkjsadlk</p>
-  					</div>
-				</div>
+				<%
+					}
+				 %>
 			</div>
 			<%@ include file="layouts/_footer.jsp" %>
 		</div>

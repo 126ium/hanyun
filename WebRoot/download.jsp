@@ -44,7 +44,7 @@
     							<h1><%=res.getFileName() %></h1>
     							<div class="center">				
 									<a href="#" class="thumbnail">
-      									<img data-src="holder.js/100%x180" alt="file" src="images/0001.jpg" style="max-width: 100%; height: auto; display: block;">
+      									<img data-src="holder.js/100%x180" alt="file" src="images/<%=res.getResourceId() %>.jpg" style="max-width: 100%; height: auto; display: block;">
       								</a>
       								<h5>Size: <%=res.getFileSizeDescription() %></h5>
       								<h5>Upload Date: <%=new SimpleDateFormat("yyyy-MM-dd").format(res.getUploadTime()) %></h5>
@@ -74,8 +74,13 @@
 									<h2>Recommend:</h2>
 									<table class="table table-hover">
 										<tbody>
-											<tr><td>file1</td></tr>
-											<tr><td>file2</td></tr>
+										<%
+											Resource res1 = (Resource) resDao.get(Integer.parseInt(fileId) + 1);
+											Resource res2 = (Resource) resDao.get(Integer.parseInt(fileId) + 2);										
+										
+										 %>
+											<tr><td><%=res1.getFileName() %></td></tr>
+											<tr><td><%=res2.getFileName() %></td></tr>
 										</tbody>
 									</table>
 								</footer>

@@ -17,7 +17,16 @@
 	<action name="login" class="com.hanyun.struts.action.LoginAction"></action>
 	<action name="personalStatis" class="com.hanyun.struts.action.PersonalStatisAction"></action>
 	<action name="allStatis" class="com.hanyun.struts.action.AllStatisAction"></action>
-
+	<action name="setpassword" class="com.hanyun.struts.action.UserSetPasswordAction"></action>
+	<action name="avatarUpload" class="com.hanyun.struts.action.AvatarUploadAction">
+		<interceptor-ref name="fileUpload"/>
+		<interceptor-ref name="defaultStack"/>
+		<result name="success">/user/account.jsp</result>
+	</action>
+	<action name="saveAvatar" class="com.hanyun.struts.action.SaveAvatarAction">
+		<result name="success">/user/account.jsp</result>
+	</action>
+	
 	<action name="upload" class="com.hanyun.struts.action.UploadAction">
 		<interceptor-ref name="fileUpload"/>
 		<interceptor-ref name="defaultStack"/>
